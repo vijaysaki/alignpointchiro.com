@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0" stop-color="#008080" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#36454F" stop-opacity="0.9"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="700" fill="#f6f8fa"/>
+  <rect x="0" y="0" width="1200" height="320" fill="url(#g)"/>
+  <rect x="80" y="120" width="520" height="420" rx="22" fill="#ffffff" opacity="0.98"/>
+  <rect x="120" y="170" width="240" height="160" rx="18" fill="#e9eef2"/>
+  <rect x="380" y="170" width="180" height="22" rx="11" fill="#dbe3ea"/>
+  <rect x="380" y="214" width="160" height="22" rx="11" fill="#dbe3ea"/>
+  <rect x="120" y="360" width="440" height="24" rx="12" fill="#dbe3ea"/>
+  <rect x="120" y="404" width="400" height="24" rx="12" fill="#dbe3ea"/>
+  <rect x="120" y="448" width="360" height="24" rx="12" fill="#dbe3ea"/>
+  <g transform="translate(700,120)">
+    <rect x="0" y="0" width="420" height="420" rx="22" fill="#ffffff" opacity="0.98"/>
+    <circle cx="110" cy="130" r="70" fill="#e9eef2"/>
+    <rect x="220" y="90" width="150" height="22" rx="11" fill="#dbe3ea"/>
+    <rect x="220" y="134" width="130" height="22" rx="11" fill="#dbe3ea"/>
+    <rect x="60" y="240" width="300" height="26" rx="13" fill="#dbe3ea"/>
+    <rect x="60" y="290" width="260" height="26" rx="13" fill="#dbe3ea"/>
+    <rect x="60" y="340" width="220" height="26" rx="13" fill="#dbe3ea"/>
+  </g>
+  <text x="96" y="92" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="44" fill="#ffffff" font-weight="700">Modern Chiropractic Office</text>
+  <text x="96" y="140" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="22" fill="#ffffff" opacity="0.9">Clean • Calm • Technology-forward</text>
+</svg>
