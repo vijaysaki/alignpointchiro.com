@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AlignPoint Chiropractic | Lexington KY Chiropractor</title>
+  <meta name="description" content="Personalized, evidence-based chiropractic care in Lexington, KY. Neck pain, back pain, sciatica, headaches, sports injuries, and more." />
+  <link rel="canonical" href="https://alignpointchiropractic.com/index.html" />
+  <link rel="stylesheet" href="/assets/style.css" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#008080" />
+  <script type="application/ld+json">[{"@context": "https://schema.org", "@type": ["Chiropractic", "LocalBusiness", "MedicalBusiness"], "name": "AlignPoint Chiropractic", "url": "https://alignpointchiropractic.com/index.html", "telephone": "+18591234567", "address": {"@type": "PostalAddress", "addressLocality": "Lexington", "addressRegion": "KY", "addressCountry": "US"}, "medicalSpecialty": "Chiropractic"}, {"@context": "https://schema.org", "@type": "Physician", "name": "Dr. Kristian Esteve, D.C.", "url": "https://alignpointchiropractic.com/index.html", "worksFor": {"@type": "Organization", "name": "AlignPoint Chiropractic"}, "areaServed": "Lexington, KY"}]</script>
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a class="brand" href="/index.html" aria-label="AlignPoint Chiropractic Home">
+        <img src="/assets/logo.png" alt="AlignPoint Chiropractic logo" />
+      </a>
+
+      <button id="menuBtn" class="nav a menu-btn" aria-expanded="false" aria-label="Open menu" style="border:1px solid rgba(54,69,79,.16);background:#fff;padding:10px 12px;border-radius:12px;font-weight:800">
+        Menu
+      </button>
+
+      <nav id="nav" class="nav" aria-label="Primary">
+        <a href="/index.html">Home</a>
+        <a href="/about.html">About</a>
+
+        <div class="dropdown">
+          <button type="button" aria-haspopup="true" aria-expanded="false">Services ▾</button>
+          <div class="dropdown-panel" role="menu" aria-label="Services">
+            <a href="/services/index.html">All Services <span>Directory</span></a>
+            <div style="height:8px"></div>
+            <a href="/services/consultation.html">Consultation<span>Learn</span></a><a href="/services/examinations.html">Examinations<span>Learn</span></a><a href="/services/digital-xrays.html">Digital X-Rays (Static Imaging)<span>Learn</span></a><a href="/services/custom-orthotics.html">Foot Levelers Custom Orthotics<span>Learn</span></a><a href="/services/spinal-adjustments.html">Spinal Manipulation (Chiropractic Adjustments)<span>Learn</span></a><a href="/services/extremity-adjustments.html">Extra-Spinal Manipulation (Extremity Adjustments)<span>Learn</span></a><a href="/services/manual-adjusting.html">Manual Adjusting Techniques<span>Learn</span></a><a href="/services/instrument-adjusting.html">Gentle Instrument Adjusting<span>Learn</span></a><a href="/services/pediatric-adjusting.html">Pediatric Adjusting<span>Learn</span></a><a href="/services/prenatal-adjusting.html">Pregnancy / Prenatal Adjusting<span>Learn</span></a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button type="button" aria-haspopup="true" aria-expanded="false">Conditions ▾</button>
+          <div class="dropdown-panel" role="menu" aria-label="Conditions">
+            <a href="/conditions/index.html">All Conditions <span>Directory</span></a>
+            <div style="height:8px"></div>
+            <a href="/conditions/neck-pain.html">Neck Pain <span>Popular</span></a>
+            <a href="/conditions/low-back-pain.html">Low Back Pain <span>Popular</span></a>
+            <a href="/conditions/sciatica.html">Sciatica <span>Popular</span></a>
+            <a href="/conditions/headaches.html">Headaches <span>Popular</span></a>
+            <a href="/conditions/migraines.html">Migraines <span>Popular</span></a>
+          </div>
+        </div>
+
+        <a href="/contact.html">Contact</a>
+
+        <a class="pill" href="tel:+18591234567">
+          <strong>(859) 123-4567</strong><small>Call</small>
+        </a>
+        <a class="cta" href="/contact.html#request">Free Consultation</a>
+      </nav>
+    </div>
+  </header>
+
+  
+<section class="hero">
+  <div class="container hero-inner">
+    <div>
+      <div class="kicker">Lexington KY Chiropractor</div>
+      <h1>Targeted Chiropractic Care,<br/>Lasting Results.</h1>
+      <p>Relieve pain, improve mobility, and restore health with personalized, evidence-based chiropractic care in Lexington, KY.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="/contact.html#request">Book an Appointment</a>
+        <a class="btn" href="/contact.html#request">Free Consultation</a>
+      </div>
+      <div class="badges">
+        <span class="badge">Advanced Technology</span>
+        <span class="badge">Holistic Approach</span>
+        <span class="badge">Patient-Centered Care</span>
+        <span class="badge">Evidence-Based</span>
+      </div>
+    </div>
+
+    <div class="card person" style="background:rgba(255,255,255,.92)">
+      <img src="/assets/dr-k.jpg" alt="Dr. Kristian Esteve, D.C. headshot" />
+      <div>
+        <h3 style="margin:0">Dr. K</h3>
+        <p style="margin:6px 0 0">Personalized chiropractic care with clear communication and modern diagnostics when appropriate.</p>
+        <div style="height:10px"></div>
+        <a class="cta" href="/about.html" style="display:inline-block">Meet Dr. K</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container split">
+    <div class="card" style="padding:18px">
+      <div class="kicker">Welcome</div>
+      <div class="h2">AlignPoint Chiropractic</div>
+      <p class="lead">Dr. Kristian Esteve, D.C. — known to his patients as Dr. K — is a Lexington-based chiropractor dedicated to helping patients relieve pain, restore mobility, and improve their quality of life through personalized, evidence-based chiropractic care. Inspired by his own life-changing…</p>
+      <div style="height:12px"></div>
+      <div class="searchbar">
+        <a class="cta" href="/services/index.html">Explore Services</a>
+        <a class="pill" href="/conditions/index.html"><strong>Find a Condition</strong><small>Directory</small></a>
+      </div>
+    </div>
+
+    <div class="grid cols-2" style="display:grid;grid-template-columns:repeat(2,1fr);gap:18px">
+      <div class="card feature">
+        <div class="icon">🩻</div>
+        <h3>Digital X-rays</h3>
+        <p>Used when clinically appropriate to guide precision care and inform your plan.</p>
+      </div>
+      <div class="card feature">
+        <div class="icon">🧠</div>
+        <h3>Root-cause focus</h3>
+        <p>We look beyond symptoms to identify what’s driving pain and dysfunction.</p>
+      </div>
+      <div class="card feature">
+        <div class="icon">🏃</div>
+        <h3>Sports & recovery</h3>
+        <p>Support performance, mobility, and injury recovery for active people.</p>
+      </div>
+      <div class="card feature">
+        <div class="icon">🤝</div>
+        <h3>Patient-centered</h3>
+        <p>Clear explanations, collaborative plans, and respectful care.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="kicker">Chiropractic Services</div>
+    <div class="h2">What we offer</div>
+    <p class="lead">From consultations and exams to adjustments, rehab, and orthotics — care is tailored to your goals.</p>
+    <div style="height:14px"></div>
+    <div class="grid cols-3">
+      
+      <a class="card tile" href="/services/consultation.html">
+        <img src="/assets/img/office.svg" alt="" />
+        <div><strong>Consultation</strong><small>Learn what to expect →</small></div>
+      </a>
+      <a class="card tile" href="/services/examinations.html">
+        <img src="/assets/img/office.svg" alt="" />
+        <div><strong>Examinations</strong><small>Learn what to expect →</small></div>
+      </a>
+      <a class="card tile" href="/services/digital-xrays.html">
+        <img src="/assets/img/office.svg" alt="" />
+        <div><strong>Digital X-Rays (Static Imaging)</strong><small>Learn what to expect →</small></div>
+      </a>
+      <a class="card tile" href="/services/custom-orthotics.html">
+        <img src="/assets/img/office.svg" alt="" />
+        <div><strong>Foot Levelers Custom Orthotics</strong><small>Learn what to expect →</small></div>
+      </a>
+      <a class="card tile" href="/services/spinal-adjustments.html">
+        <img src="/assets/img/office.svg" alt="" />
+        <div><strong>Spinal Manipulation (Chiropractic Adjustments)</strong><small>Learn what to expect →</small></div>
+      </a>
+      <a class="card tile" href="/services/extremity-adjustments.html">
+        <img src="/assets/img/office.svg" alt="" />
+        <div><strong>Extra-Spinal Manipulation (Extremity Adjustments)</strong><small>Learn what to expect →</small></div>
+      </a>
+    </div>
+    <div style="height:14px"></div>
+    <a class="cta" href="/services/index.html">View all services</a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="kicker">Conditions we treat</div>
+    <div class="h2">Find care for your symptoms</div>
+    <p class="lead">Explore common issues like neck pain, low back pain, sciatica, headaches, posture problems, and more.</p>
+    <div style="height:14px"></div>
+    <div class="grid cols-4">
+      <a class="card tile" href="/conditions/neck-pain.html"><img src="/assets/img/neck.svg" alt=""/><div><strong>Neck Pain</strong><small>Stiffness • Tech neck</small></div></a>
+      <a class="card tile" href="/conditions/low-back-pain.html"><img src="/assets/img/back.svg" alt=""/><div><strong>Low Back Pain</strong><small>Disc issues • Strain</small></div></a>
+      <a class="card tile" href="/conditions/sciatica.html"><img src="/assets/img/back.svg" alt=""/><div><strong>Sciatica</strong><small>Leg pain • Nerve irritation</small></div></a>
+      <a class="card tile" href="/conditions/headaches.html"><img src="/assets/img/headache.svg" alt=""/><div><strong>Headaches</strong><small>Tension patterns</small></div></a>
+    </div>
+    <div style="height:14px"></div>
+    <a class="cta" href="/conditions/index.html">View all conditions</a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container card" style="padding:18px">
+    <div class="split">
+      <div>
+        <div class="kicker">Free Consultation</div>
+        <div class="h2">Ready to feel better?</div>
+        <p class="lead">Tell us what’s going on. We’ll help you decide the next best step — with clear, credible guidance.</p>
+      </div>
+      <div class="callout">
+        <strong>Call now:</strong> <a href="tel:+18591234567">(859) 123-4567</a><br/>
+        <span class="note">Or request a visit on the contact page.</span>
+        <div style="height:10px"></div>
+        <a class="cta" href="/contact.html#request">Request Appointment</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <img src="/assets/logo.png" alt="AlignPoint Chiropractic logo" style="height:38px;width:auto" />
+        </div>
+        <p class="note" style="margin-top:10px">Targeted Care. Lasting Results. Serving Lexington, KY.</p>
+        <p class="note">This website content is informational and not a substitute for medical advice. For emergencies, call 911.</p>
+      </div>
+      <div>
+        <strong>Explore</strong>
+        <div style="height:10px"></div>
+        <div class="note"><a href="/services/index.html">Services</a></div>
+        <div class="note"><a href="/conditions/index.html">Conditions</a></div>
+        <div class="note"><a href="/about.html">About Dr. K</a></div>
+        <div class="note"><a href="/contact.html">Contact</a></div>
+      </div>
+      <div>
+        <strong>Call</strong>
+        <div style="height:10px"></div>
+        <div class="note"><a href="tel:+18591234567">(859) 123-4567</a></div>
+        <div class="note">Lexington, Kentucky</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/app.js" defer></script>
+</body>
+</html>

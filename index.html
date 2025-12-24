@@ -1,232 +1,377 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>AlignPoint Chiropractic | Lexington KY Chiropractor</title>
-  <meta name="description" content="Personalized, evidence-based chiropractic care in Lexington, KY. Neck pain, back pain, sciatica, headaches, sports injuries, and more." />
-  <link rel="canonical" href="https://alignpointchiropractic.com/index.html" />
-  <link rel="stylesheet" href="/assets/style.css" />
-  <link rel="manifest" href="/site.webmanifest" />
-  <meta name="theme-color" content="#008080" />
-  <script type="application/ld+json">[{"@context": "https://schema.org", "@type": ["Chiropractic", "LocalBusiness", "MedicalBusiness"], "name": "AlignPoint Chiropractic", "url": "https://alignpointchiropractic.com/index.html", "telephone": "+18591234567", "address": {"@type": "PostalAddress", "addressLocality": "Lexington", "addressRegion": "KY", "addressCountry": "US"}, "medicalSpecialty": "Chiropractic"}, {"@context": "https://schema.org", "@type": "Physician", "name": "Dr. Kristian Esteve, D.C.", "url": "https://alignpointchiropractic.com/index.html", "worksFor": {"@type": "Organization", "name": "AlignPoint Chiropractic"}, "areaServed": "Lexington, KY"}]</script>
-</head>
-<body>
-  <header class="header">
-    <div class="container header-inner">
-      <a class="brand" href="/index.html" aria-label="AlignPoint Chiropractic Home">
-        <img src="/assets/logo.png" alt="AlignPoint Chiropractic logo" />
-      </a>
+<html>
+    <head>
+        <title>AlignPoint chiropractic</title>
+        <style>
+            /* Importing a Google Font */
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@700&display=swap");
 
-      <button id="menuBtn" class="nav a menu-btn" aria-expanded="false" aria-label="Open menu" style="border:1px solid rgba(54,69,79,.16);background:#fff;padding:10px 12px;border-radius:12px;font-weight:800">
-        Menu
-      </button>
+/* Global CSS Reset */
+* {
+	margin: 0;
+	box-sizing: border-box;
+}
 
-      <nav id="nav" class="nav" aria-label="Primary">
-        <a href="/index.html">Home</a>
-        <a href="/about.html">About</a>
+html,
+body {
+	height: 100%;
+}
 
-        <div class="dropdown">
-          <button type="button" aria-haspopup="true" aria-expanded="false">Services ▾</button>
-          <div class="dropdown-panel" role="menu" aria-label="Services">
-            <a href="/services/index.html">All Services <span>Directory</span></a>
-            <div style="height:8px"></div>
-            <a href="/services/consultation.html">Consultation<span>Learn</span></a><a href="/services/examinations.html">Examinations<span>Learn</span></a><a href="/services/digital-xrays.html">Digital X-Rays (Static Imaging)<span>Learn</span></a><a href="/services/custom-orthotics.html">Foot Levelers Custom Orthotics<span>Learn</span></a><a href="/services/spinal-adjustments.html">Spinal Manipulation (Chiropractic Adjustments)<span>Learn</span></a><a href="/services/extremity-adjustments.html">Extra-Spinal Manipulation (Extremity Adjustments)<span>Learn</span></a><a href="/services/manual-adjusting.html">Manual Adjusting Techniques<span>Learn</span></a><a href="/services/instrument-adjusting.html">Gentle Instrument Adjusting<span>Learn</span></a><a href="/services/pediatric-adjusting.html">Pediatric Adjusting<span>Learn</span></a><a href="/services/prenatal-adjusting.html">Pregnancy / Prenatal Adjusting<span>Learn</span></a>
-          </div>
-        </div>
+body {
+	font-family: "Red Hat Text", sans-serif;
+}
 
-        <div class="dropdown">
-          <button type="button" aria-haspopup="true" aria-expanded="false">Conditions ▾</button>
-          <div class="dropdown-panel" role="menu" aria-label="Conditions">
-            <a href="/conditions/index.html">All Conditions <span>Directory</span></a>
-            <div style="height:8px"></div>
-            <a href="/conditions/neck-pain.html">Neck Pain <span>Popular</span></a>
-            <a href="/conditions/low-back-pain.html">Low Back Pain <span>Popular</span></a>
-            <a href="/conditions/sciatica.html">Sciatica <span>Popular</span></a>
-            <a href="/conditions/headaches.html">Headaches <span>Popular</span></a>
-            <a href="/conditions/migraines.html">Migraines <span>Popular</span></a>
-          </div>
-        </div>
+img {
+	display: block;
+	max-width: 100%;
+}
 
-        <a href="/contact.html">Contact</a>
+/* Custom CSS Variables */
+:root {
+	/* Colors */
+	--Grayish_blue: hsl(237, 18%, 59%);
+	--Soft_red: hsl(345, 95%, 68%);
+	--White: hsl(0, 0%, 100%);
+	--Dark_desaturated_blue: hsl(236, 21%, 26%);
+	--Very_dark_blue: hsl(235, 16%, 14%);
+	--Very_dark_blac_blue: hsl(234, 17%, 12%);
 
-        <a class="pill" href="tel:+18591234567">
-          <strong>(859) 123-4567</strong><small>Call</small>
-        </a>
-        <a class="cta" href="/contact.html#request">Free Consultation</a>
-      </nav>
-    </div>
-  </header>
+	/* font size */
+	--h-text: 1.1rem;
+	--p-text: 1.8rem;
+	--s-text: 0.5rem;
 
-  
-<section class="hero">
-  <div class="container hero-inner">
-    <div>
-      <div class="kicker">Lexington KY Chiropractor</div>
-      <h1>Targeted Chiropractic Care,<br/>Lasting Results.</h1>
-      <p>Relieve pain, improve mobility, and restore health with personalized, evidence-based chiropractic care in Lexington, KY.</p>
-      <div class="hero-actions">
-        <a class="btn primary" href="/contact.html#request">Book an Appointment</a>
-        <a class="btn" href="/contact.html#request">Free Consultation</a>
-      </div>
-      <div class="badges">
-        <span class="badge">Advanced Technology</span>
-        <span class="badge">Holistic Approach</span>
-        <span class="badge">Patient-Centered Care</span>
-        <span class="badge">Evidence-Based</span>
-      </div>
-    </div>
+	/* custom-shape */
+	--circle-width: 0.25em;
+	--circle-height: 0.45em;
+}
 
-    <div class="card person" style="background:rgba(255,255,255,.92)">
-      <img src="/assets/dr-k.jpg" alt="Dr. Kristian Esteve, D.C. headshot" />
-      <div>
-        <h3 style="margin:0">Dr. K</h3>
-        <p style="margin:6px 0 0">Personalized chiropractic care with clear communication and modern diagnostics when appropriate.</p>
-        <div style="height:10px"></div>
-        <a class="cta" href="/about.html" style="display:inline-block">Meet Dr. K</a>
-      </div>
-    </div>
-  </div>
-</section>
+/* Font Styles */
+.heading {
+	font-size: var(--h-text);
+	color: var(--White);
+	letter-spacing: 0.5ch;
+	text-align: center;
+	margin-bottom: 3rem;
+}
 
-<section class="section">
-  <div class="container split">
-    <div class="card" style="padding:18px">
-      <div class="kicker">Welcome</div>
-      <div class="h2">AlignPoint Chiropractic</div>
-      <p class="lead">Dr. Kristian Esteve, D.C. — known to his patients as Dr. K — is a Lexington-based chiropractor dedicated to helping patients relieve pain, restore mobility, and improve their quality of life through personalized, evidence-based chiropractic care. Inspired by his own life-changing…</p>
-      <div style="height:12px"></div>
-      <div class="searchbar">
-        <a class="cta" href="/services/index.html">Explore Services</a>
-        <a class="pill" href="/conditions/index.html"><strong>Find a Condition</strong><small>Directory</small></a>
-      </div>
-    </div>
+.primary {
+	font-size: var(--p-text);
+	color: var(--Soft_red);
+	text-align: center;
+}
 
-    <div class="grid cols-2" style="display:grid;grid-template-columns:repeat(2,1fr);gap:18px">
-      <div class="card feature">
-        <div class="icon">🩻</div>
-        <h3>Digital X-rays</h3>
-        <p>Used when clinically appropriate to guide precision care and inform your plan.</p>
-      </div>
-      <div class="card feature">
-        <div class="icon">🧠</div>
-        <h3>Root-cause focus</h3>
-        <p>We look beyond symptoms to identify what’s driving pain and dysfunction.</p>
-      </div>
-      <div class="card feature">
-        <div class="icon">🏃</div>
-        <h3>Sports & recovery</h3>
-        <p>Support performance, mobility, and injury recovery for active people.</p>
-      </div>
-      <div class="card feature">
-        <div class="icon">🤝</div>
-        <h3>Patient-centered</h3>
-        <p>Clear explanations, collaborative plans, and respectful care.</p>
-      </div>
-    </div>
-  </div>
-</section>
+.sub-heading {
+	font-size: var(--s-text);
+	color: var(--Grayish_blue);
+	text-align: center;
+	letter-spacing: 0.5ch;
+	margin-top: 1em;
+}
 
-<section class="section">
-  <div class="container">
-    <div class="kicker">Chiropractic Services</div>
-    <div class="h2">What we offer</div>
-    <p class="lead">From consultations and exams to adjustments, rehab, and orthotics — care is tailored to your goals.</p>
-    <div style="height:14px"></div>
-    <div class="grid cols-3">
-      
-      <a class="card tile" href="/services/consultation.html">
-        <img src="/assets/img/office.svg" alt="" />
-        <div><strong>Consultation</strong><small>Learn what to expect →</small></div>
-      </a>
-      <a class="card tile" href="/services/examinations.html">
-        <img src="/assets/img/office.svg" alt="" />
-        <div><strong>Examinations</strong><small>Learn what to expect →</small></div>
-      </a>
-      <a class="card tile" href="/services/digital-xrays.html">
-        <img src="/assets/img/office.svg" alt="" />
-        <div><strong>Digital X-Rays (Static Imaging)</strong><small>Learn what to expect →</small></div>
-      </a>
-      <a class="card tile" href="/services/custom-orthotics.html">
-        <img src="/assets/img/office.svg" alt="" />
-        <div><strong>Foot Levelers Custom Orthotics</strong><small>Learn what to expect →</small></div>
-      </a>
-      <a class="card tile" href="/services/spinal-adjustments.html">
-        <img src="/assets/img/office.svg" alt="" />
-        <div><strong>Spinal Manipulation (Chiropractic Adjustments)</strong><small>Learn what to expect →</small></div>
-      </a>
-      <a class="card tile" href="/services/extremity-adjustments.html">
-        <img src="/assets/img/office.svg" alt="" />
-        <div><strong>Extra-Spinal Manipulation (Extremity Adjustments)</strong><small>Learn what to expect →</small></div>
-      </a>
-    </div>
-    <div style="height:14px"></div>
-    <a class="cta" href="/services/index.html">View all services</a>
-  </div>
-</section>
+/* General CSS */
 
-<section class="section">
-  <div class="container">
-    <div class="kicker">Conditions we treat</div>
-    <div class="h2">Find care for your symptoms</div>
-    <p class="lead">Explore common issues like neck pain, low back pain, sciatica, headaches, posture problems, and more.</p>
-    <div style="height:14px"></div>
-    <div class="grid cols-4">
-      <a class="card tile" href="/conditions/neck-pain.html"><img src="/assets/img/neck.svg" alt=""/><div><strong>Neck Pain</strong><small>Stiffness • Tech neck</small></div></a>
-      <a class="card tile" href="/conditions/low-back-pain.html"><img src="/assets/img/back.svg" alt=""/><div><strong>Low Back Pain</strong><small>Disc issues • Strain</small></div></a>
-      <a class="card tile" href="/conditions/sciatica.html"><img src="/assets/img/back.svg" alt=""/><div><strong>Sciatica</strong><small>Leg pain • Nerve irritation</small></div></a>
-      <a class="card tile" href="/conditions/headaches.html"><img src="/assets/img/headache.svg" alt=""/><div><strong>Headaches</strong><small>Tension patterns</small></div></a>
-    </div>
-    <div style="height:14px"></div>
-    <a class="cta" href="/conditions/index.html">View all conditions</a>
-  </div>
-</section>
+main {
+	min-height: 100%;
+	display: grid;
+	justify-content: center;
+}
 
-<section class="section">
-  <div class="container card" style="padding:18px">
-    <div class="split">
-      <div>
-        <div class="kicker">Free Consultation</div>
-        <div class="h2">Ready to feel better?</div>
-        <p class="lead">Tell us what’s going on. We’ll help you decide the next best step — with clear, credible guidance.</p>
-      </div>
-      <div class="callout">
-        <strong>Call now:</strong> <a href="tel:+18591234567">(859) 123-4567</a><br/>
-        <span class="note">Or request a visit on the contact page.</span>
-        <div style="height:10px"></div>
-        <a class="cta" href="/contact.html#request">Request Appointment</a>
-      </div>
-    </div>
-  </div>
-</section>
+.background {
+	background-color: var(--Very_dark_blue);
+	background-image: url(https://i.postimg.cc/rmwYwjnp/bg-stars.png),
+		url(https://i.postimg.cc/hGg5HcVT/pattern-hills.png);
+	background-position: top, bottom;
+	background-repeat: repeat-x;
+	background-size: 100% 75%, 100% 25%;
+	position: relative;
+	z-index: 2;
+}
 
+.background::after {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 75%;
+	background-color: #322338;
+	filter: blur(100px);
+	opacity: 0.35;
+	z-index: -1;
+}
 
-  <footer class="footer">
-    <div class="container footer-grid">
-      <div>
-        <div style="display:flex;align-items:center;gap:12px">
-          <img src="/assets/logo.png" alt="AlignPoint Chiropractic logo" style="height:38px;width:auto" />
-        </div>
-        <p class="note" style="margin-top:10px">Targeted Care. Lasting Results. Serving Lexington, KY.</p>
-        <p class="note">This website content is informational and not a substitute for medical advice. For emergencies, call 911.</p>
-      </div>
-      <div>
-        <strong>Explore</strong>
-        <div style="height:10px"></div>
-        <div class="note"><a href="/services/index.html">Services</a></div>
-        <div class="note"><a href="/conditions/index.html">Conditions</a></div>
-        <div class="note"><a href="/about.html">About Dr. K</a></div>
-        <div class="note"><a href="/contact.html">Contact</a></div>
-      </div>
-      <div>
-        <strong>Call</strong>
-        <div style="height:10px"></div>
-        <div class="note"><a href="tel:+18591234567">(859) 123-4567</a></div>
-        <div class="note">Lexington, Kentucky</div>
-      </div>
-    </div>
-  </footer>
+.container {
+	margin: 1em;
+}
 
-  <script src="/assets/app.js" defer></script>
-</body>
+.center {
+	align-self: flex-end;
+}
+
+.countdown-timer {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 1em;
+}
+
+.timer-box {
+	width: 4rem;
+	padding: 0.5rem;
+	text-align: center;
+	background-color: var(--Dark_desaturated_blue);
+	position: relative;
+	border-radius: 0.25em;
+}
+
+.sheet {
+	position: absolute;
+	width: 100%;
+	height: 50%;
+	left: 0;
+	top: 0;
+	right: 0;
+	background-color: var(--Very_dark_blue);
+	opacity: 0.35;
+}
+
+.flip {
+	transition: transform 1s;
+	transform: translate(0%, 100%) scaleY(-1);
+}
+
+.circle-left {
+	width: var(--circle-width);
+	height: var(--circle-height);
+	position: absolute;
+	background-color: var(--Very_dark_blac_blue);
+	border-top-right-radius: 100%;
+	border-bottom-right-radius: 100%;
+	top: 45%;
+	left: 0;
+}
+
+.circle-right {
+	width: var(--circle-width);
+	height: var(--circle-height);
+	position: absolute;
+	background-color: var(--Very_dark_blac_blue);
+	border-top-left-radius: 100%;
+	border-bottom-left-radius: 100%;
+	top: 45%;
+	right: 0;
+}
+
+.bottom {
+	align-self: end;
+	margin-bottom: 4em;
+	display: flex;
+	justify-content: center;
+	gap: 2em;
+}
+
+.social-icon {
+	cursor: pointer;
+}
+
+.social-icon:hover {
+	filter: brightness(0) saturate(100%) invert(54%) sepia(7%) saturate(5054%)
+		hue-rotate(297deg) brightness(99%) contrast(99%);
+}
+
+/* Media Queries for Responsive Design */
+@media (min-width: 430px) {
+	:root {
+		--h-text: 1.25rem;
+		--p-text: 2rem;
+		--s-text: 0.5rem;
+
+		--circle-width: 0.35em;
+		--circle-height: 0.65em;
+	}
+
+	.timer-box {
+		width: 5rem;
+		padding: 0.75rem;
+	}
+}
+
+@media (min-width: 550px) {
+	:root {
+		--p-text: 3rem;
+		--s-text: 0.75rem;
+
+		--circle-width: 0.4em;
+		--circle-height: 0.7em;
+	}
+
+	.timer-box {
+		width: 6rem;
+		padding: 0.75rem;
+	}
+}
+
+@media (min-width: 800px) {
+	:root {
+		--p-text: 4rem;
+	}
+
+	.timer-box {
+		width: 8rem;
+		padding: 1rem;
+	}
+}
+
+        </style>
+    </head>
+    <body>
+        <!-- Main content container with background styling -->
+<main class="background">
+	<div class="container center">
+		<!-- Heading with a launch message -->
+		<h1 class="heading">WE'RE LAUNCHING SOON</h1>
+
+		<!-- Countdown timer section -->
+		<section class="countdown-timer">
+
+			<!-- Countdown for Days -->
+			<div class="countdown-info">
+				<div class="timer-box">
+					<div id="flip-sheet-day" class="sheet"></div>
+					<div class="circle-left"></div>
+					<p id="days" class="primary">00</p>
+					<div class="circle-right"></div>
+				</div>
+
+				<p class="sub-heading">DAYS</p>
+			</div>
+
+			<!-- Countdown for Hours -->
+			<div class="countdown-info">
+				<div class="timer-box">
+					<div id="flip-sheet-hour" class="sheet"></div>
+					<div class="circle-left"></div>
+					<p id="hours" class="primary">00</p>
+					<div class="circle-right"></div>
+				</div>
+				<p class="sub-heading">HOURS</p>
+			</div>
+
+			<!-- Countdown for Minutes -->
+			<div class="countdown-info">
+				<div class="timer-box">
+					<div id="flip-sheet-min" class="sheet"></div>
+					<div class="circle-left"></div>
+					<p id="minutes" class="primary">00</p>
+					<div class="circle-right"></div>
+				</div>
+				<p class="sub-heading">MINUTES</p>
+			</div>
+
+			<!-- Countdown for Seconds -->
+			<div class="countdown-info">
+				<div class="timer-box">
+					<div id="flip-sheet-sec" class="sheet"></div>
+					<div class="circle-left"></div>
+					<p id="seconds" class="primary">00</p>
+					<div class="circle-right"></div>
+				</div>
+				<p class="sub-heading">SECONDS</p>
+			</div>
+
+		</section>
+	</div>
+
+	<!-- Social Media Icons at the bottom -->
+	<div class="container bottom">
+		<img src="https://i.postimg.cc/9fpn2KBS/icon-facebook.png" alt="facebook" class="social-icon">
+		<img src="https://i.postimg.cc/Nf3Vk1MN/icon-pinterest.png" alt="pinterest" class="social-icon">
+		<img src="https://i.postimg.cc/Gmvf7HTb/icon-instagram.png" alt="instagram" class="social-icon">
+	</div>
+</main>
+    </body>
+<script>
+  // Grab number elements
+  const dayEl = document.getElementById("days");
+  const hourEl = document.getElementById("hours");
+  const minEl = document.getElementById("minutes");
+  const secEl = document.getElementById("seconds");
+
+  // Grab flip sheet elements
+  const dayFlip = document.getElementById("flip-sheet-day");
+  const hourFlip = document.getElementById("flip-sheet-hour");
+  const minFlip = document.getElementById("flip-sheet-min");
+  const secFlip = document.getElementById("flip-sheet-sec");
+
+  // Flip helpers
+  const flip_anime_sec = () => secFlip.classList.toggle("flip");
+
+  const flip_anime = (obj) => {
+    obj.classList.add("flip");
+    setTimeout(() => obj.classList.remove("flip"), 1000);
+  };
+
+  // Format with leading zero
+  const pad2 = (n) => String(n).padStart(2, "0");
+
+  // Target: today at 6:00 PM (local time).
+  // If already past 6:00 PM, target becomes tomorrow at 6:00 PM.
+  const getTarget = () => {
+    const now = new Date();
+    const target = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate(),
+      18, 0, 0, 0 // 18:00:00
+    );
+    if (now >= target) target.setDate(target.getDate() + 1);
+    return target;
+  };
+
+  let targetTime = getTarget();
+
+  // Track previous values so we can flip only when they change
+  let prev = { d: null, h: null, m: null, s: null };
+
+  const update = () => {
+    const now = new Date();
+
+    // If we've reached/passed target, stop at 00:00:00:00 (or pick a new target)
+    let diffMs = targetTime - now;
+
+    if (diffMs <= 0) {
+      diffMs = 0;
+      clearInterval(timerInterval);
+      clearInterval(secFlipInterval);
+    }
+
+    const totalSeconds = Math.floor(diffMs / 1000);
+
+    const d = Math.floor(totalSeconds / (24 * 3600));
+    const h = Math.floor((totalSeconds % (24 * 3600)) / 3600);
+    const m = Math.floor((totalSeconds % 3600) / 60);
+    const s = totalSeconds % 60;
+
+    // Flip animation only when the value actually changes
+    if (prev.m !== null && m !== prev.m) flip_anime(minFlip);
+    if (prev.h !== null && h !== prev.h) flip_anime(hourFlip);
+    if (prev.d !== null && d !== prev.d) flip_anime(dayFlip);
+
+    // Update text
+    dayEl.innerText = pad2(d);
+    hourEl.innerText = pad2(h);
+    minEl.innerText = pad2(m);
+    secEl.innerText = pad2(s);
+
+    prev = { d, h, m, s };
+  };
+
+  // Initial paint
+  update();
+
+  // Run countdown
+  const timerInterval = setInterval(update, 1000);
+
+  // Keep your seconds flip effect
+  const secFlipInterval = setInterval(flip_anime_sec, 1000);
+</script>
+
 </html>
