@@ -333,7 +333,6 @@ main{
   border:1px solid rgba(255,255,255,.14);
 }
 .media::after{
-  content:"Office Photo Placeholder";
   display:grid;
   place-items:center;
   height:100%;
@@ -727,4 +726,52 @@ main{
     border-radius:2px;
     margin:4px auto;
   }
+}
+
+
+
+
+.media{
+  position:relative;
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  background:#0f1b20;
+  min-height:320px;
+  border:1px solid rgba(255,255,255,.14);
+}
+
+.media img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* Download button inside hero media */
+
+.welcome-media{ overflow:hidden; }
+.welcome-media img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+.media-download{
+  position:absolute;
+  left:14px;
+  bottom:14px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:10px 12px;
+  border-radius:999px;
+  background:rgba(11,15,18,.78);
+  border:1px solid rgba(255,255,255,.18);
+  color:rgba(255,255,255,.92);
+  font-weight:800;
+  font-size:12px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  text-decoration:none;
+  backdrop-filter: blur(10px);
+}
+
+.media-download:hover{
+  background:rgba(11,15,18,.9);
 }
