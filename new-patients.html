@@ -13,19 +13,35 @@
 <body class="theme">
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="site-header" id="top">
-    <div class="container header-inner">
+<header class="site-header" id="top">
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="container topbar-inner">
       <a class="brand" href="index.html" aria-label="AlignPoint Chiropractic Home">
-        <img class="brand-logo" src="assets/alignpoint-logo-dark.png" alt="AlignPoint Chiropractic logo" />
+      <img src="assets/alignpoint-logo-dark.png" class="brand-logo" alt="AlignPoint Chiropractic">
       </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="siteNav" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
 
-      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="siteNav">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="topbar-right">
+        <div class="header-contact">
+          <div class="header-address">
+            1132 Winchester Rd 
+            Suite #125 
+            Lexington, KY 40505 | <a href="tel:+18592540059">(859) 254-0059</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <!-- MENU BAR -->
+  <div class="menubar">
+    <div class="container menubar-inner">
       <nav class="site-nav" id="siteNav" aria-label="Primary navigation">
         <ul class="nav-list">
-          <li><a class="nav-link " href="index.html">Home</a></li>
+          <li><a class="nav-link is-active" href="index.html">Home</a></li>
           <li><a class="nav-link " href="about.html">About</a></li>
 
           <li class="has-dropdown">
@@ -59,7 +75,7 @@
           <li><a class="nav-link " href="foot-levelers.html">Foot Levelers</a></li>
 
           <li class="has-dropdown">
-            <button class="nav-link nav-btn is-active" type="button" aria-expanded="false">
+            <button class="nav-link nav-btn " type="button" aria-expanded="false">
               New Patients <span class="chev" aria-hidden="true"></span>
             </button>
             <div class="dropdown" role="menu">
@@ -71,29 +87,16 @@
           </li>
 
           <li><a class="nav-link " href="contact.html">Contact</a></li>
+
+
+        <li class="nav-cta">
+          <a class="btn btn-primary btn-cta" href="new-patient-special.html">New Patient Special</a>
+        </li>
         </ul>
       </nav>
-
-      
-      <div class="header-contact">
-        <div class="header-address">
-          1132 Winchester Rd<br/>
-          Suite #125<br/>
-          Lexington, KY 40505
-        </div>
-        <div class="header-phones">
-          <a href="tel:+18592540059">(859) 254-0059</a>
-          <span aria-hidden="true">|</span>
-          <a href="tel:+12136050761">(213) 605-0761</a>
-        </div>
-        <a class="btn btn-primary square" href="new-patient-special.html">New Patient Special</a>
-      </div>
-    
-        <a class="btn btn-primary" href="new-patient-special.html">New Patient Special</a>
-      </div>
     </div>
-  </header>
-
+  </div>
+</header>
   <main id="main">
     
 <section class="section">
