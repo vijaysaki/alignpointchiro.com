@@ -9,6 +9,22 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Tiny helper styles: only for the inline description area (no popup, no layout overhaul) -->
+  <style>
+    .pill-item { cursor: pointer; }
+    .pill-item.is-selected { text-decoration: underline; text-underline-offset: 3px; }
+    .pill-detail {
+      margin-top: 14px;
+      padding: 14px 14px;
+      border-radius: 14px;
+      background: rgba(0,0,0,.04);
+    }
+    .pill-detail h4 { margin: 0 0 6px; font-size: 1.05rem; }
+    .pill-detail p { margin: 0; line-height: 1.55; }
+    .pill-detail small { display: block; margin-top: 10px; opacity: .8; }
+    .pill-desc-list { display: none; }
+  </style>
 </head>
 <body class="theme">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -122,6 +138,30 @@
 <span class="pill-item">Limited range of motion</span>
 <span class="pill-item">TMJ Pain</span>
 <span class="pill-item">Jaw Pain</span></div>
+
+        <!-- Inline description area (this is where text appears on click) -->
+        <div class="pill-detail" data-pill-detail hidden>
+          <h4 data-pill-title></h4>
+          <p data-pill-body></p>
+          <small>Not sure what’s going on? If symptoms are severe, worsening, or include numbness/weakness, contact us so we can guide you to the right next step.</small>
+        </div>
+
+        <!-- Descriptions stored in HTML (NOT in popup JS) -->
+        <div class="pill-desc-list" aria-hidden="true">
+          <div data-pill="Neck pain">Neck pain can feel achy, sharp, tight, or “stuck,” and it often worsens with prolonged sitting, driving, or phone/computer use. Common contributors include muscle tension, irritated joints, poor posture endurance, sleeping positions, and sudden strain. During an exam, we look at movement patterns (turning, tilting, looking up/down), muscle tenderness, posture (especially forward-head position), and whether symptoms travel into the shoulder or arm. Care typically focuses on improving mobility where you’re restricted, reducing muscle guarding, and building better strength/endurance so the neck tolerates daily life more comfortably.</div>
+          <div data-pill="Stiff neck">A stiff neck usually means reduced motion and a feeling of tightness—often worse when you try to look over your shoulder or tilt your head. This can happen after sleeping awkwardly, a long day at a desk, stress-related muscle tension, or minor strains. We evaluate which movements are limited and what tissues are irritated (muscles vs. joints). Supportive care may include gentle joint work, soft-tissue techniques, and simple mobility exercises you can do at home to keep stiffness from returning.</div>
+          <div data-pill="Tech neck">Tech neck describes strain patterns from sustained screen posture—head drifting forward, shoulders rounding, and upper-back stiffness. Over time, this can overload the neck and upper back, create frequent tightness, and contribute to headaches. We assess posture, screen/desk setup, upper-back mobility, and endurance of postural muscles. Treatment is often a combo of hands-on care plus very specific changes: workstation tweaks, movement breaks, chin-tuck/postural drills, and upper-back mobility work so your body isn’t “fighting gravity” all day.</div>
+          <div data-pill="Cervical sprain/strain">A cervical sprain/strain is irritation from overstretching or overloading the neck’s muscles and ligaments. It may show up as pain with movement, muscle spasm, and sensitivity when you press certain areas. Triggers include sudden movements, awkward lifting, sports, or minor accidents. We screen for red flags, test range of motion and stability, and look for patterns of muscle guarding. Care focuses on calming the irritation, restoring normal motion gradually, and re-building tolerance so you can move confidently again.</div>
+          <div data-pill="Pinched nerve in the neck">“Pinched nerve” is a common term for nerve irritation in the neck. People may feel neck pain with symptoms traveling into the shoulder/arm/hand such as tingling, numbness, or burning. Certain positions (looking up, turning, prolonged sitting) can worsen it. We evaluate nerve tension signs, reflexes/strength (when appropriate), and posture/movement contributors. Supportive care often targets reducing irritation through positioning strategies, gentle mobility, and stabilizing exercises—while referring out promptly if symptoms suggest something urgent.</div>
+          <div data-pill="Cervical radiculopathy">Cervical radiculopathy describes irritation of a nerve root as it exits the neck. Symptoms can include arm pain, tingling, numbness, or weakness. Many cases respond well to conservative care. We examine how neck motion affects symptoms, screen neurological function, and identify postures that aggravate or relieve discomfort. Treatment may include gentle mobilization, targeted exercises, and guidance on sleeping/desk posture to reduce ongoing stress on the irritated tissues.</div>
+          <div data-pill="Bulging or herniated cervical disc">A disc bulge or herniation in the neck can contribute to neck pain and, in some cases, nerve-related symptoms into the arm. The goal is not to “chase an MRI label,” but to identify what movements and loads aggravate your symptoms and to improve function safely. We check neck range of motion, posture, and nerve sensitivity signs. Supportive care often includes activity modification guidance, gentle mobility, stabilization work, and gradual return to normal activity as symptoms improve.</div>
+          <div data-pill="Head-forward posture">Head-forward posture (forward head) means your head sits in front of your shoulders, increasing strain on the neck and upper back. This posture can make muscles work harder just to hold your head up, leading to fatigue, tightness, and sometimes headaches. We look at posture habits, workstation setup, upper-back mobility, and strength/endurance of postural muscles. The plan usually includes posture training, targeted strengthening, and mobility so correction is comfortable and sustainable.</div>
+          <div data-pill="Whiplash">Whiplash refers to neck strain from rapid back-and-forth motion—often after a car accident, but it can also happen with sports impacts. Symptoms can include pain, stiffness, headaches, reduced range of motion, and muscle spasm. We screen carefully for red flags, evaluate motion and stability, and consider how the upper back and shoulders contribute. Care is typically gentle, progressive, and focused on restoring motion and confidence while reducing protective muscle guarding.</div>
+          <div data-pill="Limited range of motion">Limited range of motion means you can’t move the neck (or related region) fully without discomfort or restriction. This can be due to joint stiffness, muscle guarding, irritation, or posture-related tightness. We identify which motions are limited and what contributes—joints, muscles, or nerve sensitivity. Supportive care often includes mobilization, soft-tissue work, and a short home routine to keep movement improving between visits.</div>
+          <div data-pill="TMJ Pain">TMJ pain involves the jaw joint area in front of the ear and may feel like soreness, clicking, tightness, or pain when chewing or opening wide. Jaw issues can be influenced by stress/clenching, muscle tension, bite mechanics, and neck posture. We can assess neck and upper-back contributions, muscle tension patterns, and movement coordination, and we’ll coordinate with dental/medical providers when needed. Support often includes reducing muscle tension, posture guidance, and self-care strategies for clenching and jaw overuse.</div>
+          <div data-pill="Jaw Pain">Jaw pain can show up as aching, tightness, or tenderness in the jaw muscles, especially with chewing, yawning, or prolonged talking. It’s commonly influenced by clenching/grinding, stress, posture, and muscle imbalance. We look for neck and upper-back tension that can “feed into” jaw tension, and we can suggest practical strategies (heat, gentle mobility, habit changes) while collaborating with dental care if bite or grinding appliances are needed.</div>
+        </div>
+
       </div>
     </div>
     
@@ -141,6 +181,29 @@
 <span class="pill-item">SI joint dysfunction</span>
 <span class="pill-item">Thoracic outlet issues</span>
 <span class="pill-item">Hip pain related to misalignment</span></div>
+
+        <div class="pill-detail" data-pill-detail hidden>
+          <h4 data-pill-title></h4>
+          <p data-pill-body></p>
+          <small>Not sure what’s going on? If symptoms are severe, worsening, or include numbness/weakness, contact us so we can guide you to the right next step.</small>
+        </div>
+
+        <div class="pill-desc-list" aria-hidden="true">
+          <div data-pill="Lower back pain">Lower back pain can come from muscles, joints, discs, and movement overload—often worsened by prolonged sitting, bending, lifting, or standing for long periods. Some people feel a dull ache; others feel sharp “catching” with certain movements. We assess how you move (hinging, sitting-to-standing, bending), what positions calm or aggravate symptoms, and whether pain travels. Supportive care typically aims to restore comfortable motion, reduce muscle guarding, and improve strength/endurance so your back handles daily life with less flare-ups.</div>
+          <div data-pill="Mid-back pain (pain between shoulder blades)">Mid-back pain often feels like tightness or an ache between the shoulder blades, commonly linked to desk posture, shallow breathing patterns, stress, or thoracic joint stiffness. It may worsen with long sitting or repetitive reaching. We evaluate thoracic mobility, rib movement, shoulder mechanics, and postural endurance. Care often includes upper-back mobility work, soft-tissue techniques, posture/ergonomic changes, and exercises that help keep the area loose during the day.</div>
+          <div data-pill="Upper back pain">Upper back pain is frequently tied to rounded shoulders, tight chest muscles, and overworked upper traps/neck muscles. It can feel sore, tight, or fatigued—especially after computer work, driving, or stress. We assess shoulder blade control, upper-back mobility, and where tension is building. Treatment often blends hands-on care with strengthening of the mid-back/scapular stabilizers to improve posture endurance.</div>
+          <div data-pill="Sciatica">Sciatica is a symptom pattern where pain (and sometimes tingling or numbness) travels from the low back/buttock down the leg. It can be influenced by irritation of the sciatic nerve or the tissues around it. We identify whether symptoms behave like nerve irritation, muscle referral, or joint-related pain. Supportive care focuses on reducing irritation, improving movement strategies, and guiding positions/exercises that calm symptoms—while referring out quickly if there are concerning neurological signs.</div>
+          <div data-pill="Lumbar radiculopathy">Lumbar radiculopathy describes nerve root irritation in the low back that can cause leg pain, tingling, numbness, or weakness. Many cases improve with conservative care. We evaluate how motion and posture affect symptoms and screen neurological function when appropriate. Care typically includes gentle mobility, stabilization, and activity guidance to reduce flare-ups while building resilience.</div>
+          <div data-pill="Herniated or bulging discs">Disc changes are common and don’t always cause pain, but they can contribute to symptoms when irritated. People may feel back pain, leg pain, or symptoms worse with bending/sitting. We focus on how your symptoms behave—what makes them better or worse—and build a plan to restore movement and load tolerance safely. Supportive care may include graded activity, mobility work, stabilization, and strategies for lifting/sitting to reduce irritation.</div>
+          <div data-pill="Degenerative disc disease">Degenerative disc disease refers to age-related disc changes seen on imaging. Many people with these changes do well with movement-based care. Symptoms can include stiffness, intermittent flare-ups, or reduced tolerance to sitting/standing. We focus on function: improving mobility, strengthening supportive muscles, and helping you manage flare-ups with practical strategies.</div>
+          <div data-pill="Scoliosis discomfort">Scoliosis is a spinal curvature that can create muscle imbalance and uneven loading. Some people feel no pain; others experience fatigue, tightness, or soreness. We assess posture, mobility, and muscle balance, and we provide supportive care aimed at comfort and movement quality. When appropriate, we coordinate with other providers for monitoring or specialized management.</div>
+          <div data-pill="Facet syndrome">Facet joints are small joints in the spine that can become irritated, causing localized back pain and stiffness—often worse with extension (leaning back) or twisting. We assess which movements reproduce symptoms and look for stiffness patterns. Care may include mobilization, soft-tissue work, and exercises to improve motion and tolerance.</div>
+          <div data-pill="Muscle spasms">Muscle spasms are sudden, involuntary muscle tightening that can feel sharp and restrictive. They often happen after awkward movements, fatigue, or when the body “guards” due to irritation. We evaluate what triggered the spasm and restore gentle motion and comfort. Supportive care commonly includes soft-tissue work, gentle mobility, and practical advice for heat/movement and activity progression.</div>
+          <div data-pill="SI joint dysfunction">SI joint dysfunction describes pain related to the joint where the spine meets the pelvis. It can feel like low-back pain, buttock pain, or pain with standing/walking and transitions (getting out of a car/chair). We assess pelvic mechanics, hip mobility, and stability control. Care often includes targeted joint/muscle work plus strengthening to support the pelvis during daily activity.</div>
+          <div data-pill="Thoracic outlet issues">Thoracic outlet issues can involve compression/irritation of nerves or blood vessels between the neck and shoulder region. Symptoms may include arm heaviness, tingling, numbness, or discomfort—often worsened by overhead activity or prolonged posture. We assess posture, neck/shoulder mobility, and muscular tension patterns. Supportive care often focuses on improving rib/upper-back mobility, reducing soft-tissue tension, and strengthening postural support.</div>
+          <div data-pill="Hip pain related to misalignment">Hip pain can be influenced by pelvic/spinal mechanics, gait changes, and muscle imbalance. Sometimes the hip is irritated because it’s compensating for restricted movement elsewhere. We assess hip range of motion, pelvic alignment patterns, and walking mechanics, then build a plan focused on restoring balanced movement and improving load tolerance.</div>
+        </div>
+
       </div>
     </div>
     
@@ -151,6 +214,20 @@
 <span class="pill-item">Migraine headaches</span>
 <span class="pill-item">Cervicogenic headaches</span>
 <span class="pill-item">Cluster headaches (supportive care)</span></div>
+
+        <div class="pill-detail" data-pill-detail hidden>
+          <h4 data-pill-title></h4>
+          <p data-pill-body></p>
+          <small>Not sure what’s going on? If symptoms are severe, worsening, or unusual for you, contact us and consider urgent evaluation when appropriate.</small>
+        </div>
+
+        <div class="pill-desc-list" aria-hidden="true">
+          <div data-pill="Tension headaches">Tension headaches often feel like a tight band or pressure around the head and are commonly linked to muscle tension in the neck, shoulders, and jaw. Triggers can include stress, prolonged screen time, poor posture, dehydration, and lack of sleep. We assess neck mobility, postural strain patterns, and muscle tenderness that can refer pain upward. Supportive care usually includes addressing neck/upper-back tension, improving posture endurance, and giving practical strategies for desk setup and movement breaks.</div>
+          <div data-pill="Migraine headaches">Migraines are recurring headaches that may include throbbing pain, light/sound sensitivity, nausea, and activity intolerance. Triggers vary (stress, sleep disruption, foods, hormones, dehydration, etc.). While migraines are a neurological condition, many people have musculoskeletal factors that can aggravate frequency or intensity—like neck tension, posture strain, or poor movement tolerance. We screen for red flags and focus on supportive care: reducing neck/upper-back tension, improving mobility, and helping you identify posture or activity triggers—while coordinating with medical providers as needed.</div>
+          <div data-pill="Cervicogenic headaches">Cervicogenic headaches are headaches that originate from the neck—often one-sided and aggravated by neck movement or sustained posture. People may notice limited neck range of motion or tenderness at the base of the skull. We assess cervical joint mobility, muscle tension, posture, and what movements reproduce symptoms. Supportive care typically emphasizes improving neck function, reducing muscle guarding, and strengthening posture support so the headache driver is less active.</div>
+          <div data-pill="Cluster headaches (supportive care)">Cluster headaches are severe headaches that occur in cyclical patterns and require medical evaluation and management. Chiropractic care is considered supportive—focused on improving comfort, reducing associated neck/upper-back tension, and helping with posture and movement factors that can worsen overall strain. We encourage coordination with your primary care provider or neurologist for proper diagnosis and treatment.</div>
+        </div>
+
       </div>
     </div>
     
@@ -166,6 +243,25 @@
 <span class="pill-item">Carpal tunnel syndrome</span>
 <span class="pill-item">Wrist pain</span>
 <span class="pill-item">Numbness or tingling in arms/hands</span></div>
+
+        <div class="pill-detail" data-pill-detail hidden>
+          <h4 data-pill-title></h4>
+          <p data-pill-body></p>
+          <small>Not sure what’s going on? If you have sudden weakness, progressive numbness, or severe pain after injury, contact us so we can guide you to the right next step.</small>
+        </div>
+
+        <div class="pill-desc-list" aria-hidden="true">
+          <div data-pill="Shoulder pain">Shoulder pain can come from the joint, rotator cuff tendons, shoulder blade mechanics, or even the neck referring pain into the shoulder. It may worsen with reaching overhead, lifting, sleeping on that side, or repetitive work. We assess shoulder range of motion, rotator cuff tolerance, shoulder blade control, and neck contribution. Supportive care may include gentle joint/mobility work, soft-tissue techniques, and a clear plan for restoring strength and movement without flaring symptoms.</div>
+          <div data-pill="Rotator cuff tension">Rotator cuff tension/irritation often shows up as pain with overhead reaching, lifting, or certain sleeping positions. It may feel like a deep ache at the front/side of the shoulder. We evaluate shoulder mechanics, scapular control, and which movements overload the cuff. Supportive care typically includes reducing irritation, improving mobility, and progressively strengthening the rotator cuff and shoulder blade stabilizers to prevent recurrence.</div>
+          <div data-pill="Frozen shoulder">Frozen shoulder (adhesive capsulitis) involves progressive stiffness and loss of motion, often making reaching behind the back or overhead difficult. Symptoms typically evolve over months. We assess your motion pattern, pain levels, and functional limitations, and we coordinate care when needed. Supportive care is usually gentle and progressive: improving mobility within tolerance, reducing guarding, and building strength as motion returns.</div>
+          <div data-pill="Impingement syndrome">Impingement syndrome commonly refers to shoulder pain caused when tissues are irritated during arm elevation—often due to movement mechanics, tendon irritation, or limited mobility in the shoulder/upper back. Pain may occur when lifting the arm, reaching into cabinets, or certain gym movements. We evaluate shoulder blade rhythm, upper-back mobility, and rotator cuff function. Care often includes mobility work, motor control training, and strengthening so overhead motion becomes smoother and less painful.</div>
+          <div data-pill="Tennis elbow">Tennis elbow is pain on the outside of the elbow related to overuse of wrist/forearm muscles (often from gripping, typing, tools, or racquet sports). It can hurt with lifting a coffee mug, shaking hands, or gripping. We assess load tolerance, wrist/forearm mechanics, and contributing shoulder/neck patterns. Supportive care often includes soft-tissue work, gradual strengthening, and practical activity modifications to calm irritation and rebuild resilience.</div>
+          <div data-pill="Golfer’s elbow">Golfer’s elbow is pain on the inside of the elbow related to irritation of forearm tendons—often from repetitive gripping, lifting, or wrist flexion. It may flare with carrying, curls, pulling, or certain work tasks. We assess tendon tolerance and mechanics along the arm chain. Care usually focuses on reducing overload, improving soft-tissue mobility, and progressive strengthening so daily use doesn’t keep re-irritating the tendon.</div>
+          <div data-pill="Carpal tunnel syndrome">Carpal tunnel syndrome involves irritation/compression of a nerve at the wrist and may cause numbness/tingling in the hand, especially at night or with repetitive work. Symptoms can also be influenced by neck/shoulder posture and nerve sensitivity higher up the arm. We assess wrist mechanics, hand symptoms, and possible contributions from the neck and upper limb. Supportive care may include wrist/forearm soft-tissue work, nerve mobility strategies, ergonomic guidance, and referral if symptoms are severe or worsening.</div>
+          <div data-pill="Wrist pain">Wrist pain can result from strain, overuse, tendon irritation, joint restriction, or repetitive activities (keyboard, tools, lifting, sports). It may worsen with pushing, gripping, or weight bearing. We assess range of motion, tenderness patterns, and how the wrist is being loaded in daily life. Supportive care includes calming irritated tissues, restoring motion, and building strength/tolerance with practical modifications.</div>
+          <div data-pill="Numbness or tingling in arms/hands">Numbness/tingling in the arms/hands can be caused by nerve irritation at the neck, shoulder region, elbow, or wrist. The goal is to identify where irritation is most likely occurring and what positions or activities trigger it. We screen for strength changes and symptom patterns and look at posture and movement mechanics. Supportive care focuses on reducing nerve irritation, improving mobility where needed, and providing guidance on positions and activities that calm symptoms.</div>
+        </div>
+
       </div>
     </div>
     
@@ -182,6 +278,26 @@
 <span class="pill-item">Flat feet / fallen arches</span>
 <span class="pill-item">Plantar fasciitis</span>
 <span class="pill-item">Foot imbalance issues (orthotics benefit)</span></div>
+
+        <div class="pill-detail" data-pill-detail hidden>
+          <h4 data-pill-title></h4>
+          <p data-pill-body></p>
+          <small>Not sure what’s going on? If symptoms are severe, worsening, or you’re unable to bear weight, contact us so we can guide you to the right next step.</small>
+        </div>
+
+        <div class="pill-desc-list" aria-hidden="true">
+          <div data-pill="Hip pain">Hip pain can show up in the front of the hip (pinch/tightness when sitting), on the side (tenderness with walking or stairs), or deep in the buttock. Triggers commonly include prolonged sitting, running, squats, getting in/out of the car, or standing on one leg. Sometimes the hip is the primary source; other times the low back, pelvis, or surrounding muscle balance drives the irritation. We assess hip range of motion, pelvic mechanics, gait, and strength/stability of the glutes and core. Care often includes improving mobility where you’re restricted, reducing muscle guarding, and building better control so the hip tolerates daily life and exercise more comfortably.</div>
+          <div data-pill="Piriformis syndrome">Piriformis syndrome is often used when a deep hip/buttock muscle becomes tight or irritated and contributes to buttock pain and sometimes “sciatic-like” symptoms down the leg. Many issues can mimic this (including true low-back nerve irritation), so the key is identifying what’s really driving your symptoms. We evaluate hip rotation, lumbar/pelvic motion, symptom triggers (sitting, driving, running), and whether nerve sensitivity signs are present. Supportive care usually focuses on reducing deep hip tension, improving hip mobility, and restoring stronger movement patterns so the area doesn’t keep flaring up.</div>
+          <div data-pill="Knee pain">Knee pain can come from irritated tendons, joint surfaces, kneecap tracking issues, muscle imbalance, or overload from activity. It may worsen with stairs, squatting, running, kneeling, or prolonged sitting/standing. Because the knee sits between the hip and the foot/ankle, mechanics above and below often matter. We evaluate hip control, knee alignment, foot/ankle mobility, and walking mechanics. Care typically includes addressing stiffness/tightness, improving joint motion where needed, and progressively strengthening so the knee can handle work, sports, and daily movement with fewer flare-ups.</div>
+          <div data-pill="Runner’s knee">Runner’s knee often describes pain around or behind the kneecap (patellofemoral pain). It can feel worse with running, hills, stairs, squats, or sitting with the knee bent for a long time (“movie theater sign”). Contributors can include hip weakness/endurance, kneecap tracking patterns, training volume, footwear, and foot mechanics. We assess hip-to-knee control, kneecap movement during bending, and what changes reduce pain. Supportive care often includes mobility work where restricted, targeted strengthening (especially glute/hip control), and guidance on training load so you can stay active while symptoms calm down.</div>
+          <div data-pill="Jumper’s knee">Jumper’s knee usually refers to patellar tendon irritation (the tendon just below the kneecap). It’s common with jumping, sprinting, heavy squats, and repetitive impact. Pain typically shows at the front of the knee and worsens with takeoff/landing, stairs, or deep bending. We look at tendon load tolerance, movement mechanics (hip/ankle), and training factors that may be overloading the tendon. Supportive care emphasizes reducing flare triggers, improving mechanics, and building progressive tendon-friendly strength so the tendon becomes more resilient over time.</div>
+          <div data-pill="IT band tightness">IT band tightness is often how people describe outer thigh or outer knee discomfort, especially during running, cycling, stairs, or longer walks. The IT band is a thick connective tissue structure that interacts with hip muscles and lateral knee structures. Symptoms are frequently influenced by hip strength/endurance, pelvic control, running form, and training volume. We assess hip abductor strength, pelvic stability, and movement patterns that increase lateral knee stress. Supportive care typically focuses on improving hip control and load management rather than aggressively trying to “stretch the band.”</div>
+          <div data-pill="Ankle pain">Ankle pain can come from prior sprains (even old ones), joint stiffness, tendon irritation, instability, or overuse—especially if you’re on your feet a lot or do impact sports. It may worsen on uneven ground, with running/jumping, or after sitting and then standing. Limited ankle mobility can also contribute to knee, hip, and back compensation. We evaluate ankle range of motion (especially dorsiflexion), ligament stability, foot mechanics, and balance/proprioception. Care often includes joint mobilization, soft-tissue work, and a plan to rebuild stability and mobility so the ankle supports you confidently again.</div>
+          <div data-pill="Flat feet / fallen arches">Flat feet (fallen arches) means the arch collapses more than expected during standing/walking. For some people this is painless; for others it contributes to foot fatigue, heel pain, shin splints, knee discomfort, or hip/back strain because mechanics change. We assess foot posture, shoe wear patterns, ankle mobility, and whether the arch is flexible (changes when you rise onto toes) or more rigid. Supportive care may include foot/ankle strengthening, mobility work, footwear guidance, and—when appropriate—custom orthotics to improve support and comfort during long days on your feet.</div>
+          <div data-pill="Plantar fasciitis">Plantar fasciitis typically presents as heel or arch pain that is often sharp with the first steps in the morning or after rest, then may ease as you “warm up.” It can flare with long standing, walking, running, or tight calves. The plantar fascia is supportive tissue on the bottom of the foot that can become irritated when load exceeds its current capacity. We assess calf/ankle mobility, foot mechanics, and how you load the foot during gait. Supportive care may include soft-tissue work, mobility and strengthening exercises, taping strategies, and guidance on shoes/orthotics to reduce strain while the tissue calms down.</div>
+          <div data-pill="Foot imbalance issues (orthotics benefit)">Foot imbalance issues can include overpronation, uneven pressure side-to-side, arch collapse, or differences between left and right feet. Over time, this can influence how forces travel into the knees, hips, and low back—especially for people who stand/walk for work or exercise regularly. We evaluate foot posture, gait, ankle motion, and pressure patterns (often visible in shoe wear). If your mechanics suggest you’d benefit, orthotics can provide consistent support and help distribute pressure more evenly. When recommended, orthotics are usually paired with exercises and mobility work so you’re improving the whole system—not just relying on support alone.</div>
+        </div>
+
       </div>
     </div>
     
@@ -196,6 +312,24 @@
 <span class="pill-item">Workplace ergonomic injuries</span>
 <span class="pill-item">Upper Crossed Syndrome</span>
 <span class="pill-item">Lower Crossed Syndrome</span></div>
+
+        <div class="pill-detail" data-pill-detail hidden>
+          <h4 data-pill-title></h4>
+          <p data-pill-body></p>
+          <small>Not sure what’s going on? We can help identify the biggest drivers and give you a clear plan.</small>
+        </div>
+
+        <div class="pill-desc-list" aria-hidden="true">
+          <div data-pill="Poor posture">Poor posture usually means your body is spending long periods in positions that increase strain—often sitting with a rounded back, forward head, and collapsed shoulders. Over time, this can lead to neck/back tightness, headaches, and fatigue. We look at your daily positions (desk, phone, driving), mobility restrictions, and endurance of the muscles that should support posture. Supportive care often combines hands-on work with practical changes: workstation setup, movement breaks, and strengthening so posture becomes easier to maintain.</div>
+          <div data-pill="Rounded shoulders">Rounded shoulders occur when the shoulders drift forward and the upper back becomes more rounded, commonly from desk work and phone use. This can overload the neck, tighten the chest muscles, and make shoulder movement less efficient. We assess upper-back mobility, chest/shoulder flexibility, and the strength/endurance of your mid-back muscles. Care typically focuses on opening up mobility restrictions and strengthening the muscles that hold the shoulder blades in a healthier position.</div>
+          <div data-pill="Pelvic tilt">Pelvic tilt refers to the pelvis tipping forward or backward more than ideal, affecting the curve of your low back and the way your hips and core function. It can contribute to low-back tightness, hip discomfort, or a feeling of “unevenness.” We assess hip flexor length, glute and core control, and how you move during bending and walking. Supportive care often includes mobility work and targeted strengthening to restore balanced mechanics.</div>
+          <div data-pill="Leg length discrepancy">Leg length discrepancy can be structural (bone length difference) or functional (posture/muscle imbalance making one side appear shorter). It can influence gait, pelvic mechanics, and sometimes contribute to hip/back discomfort. We assess posture, movement, and whether the discrepancy changes with positioning. Support may include addressing mobility/strength imbalances, and if truly structural and symptomatic, discussing shoe lifts or orthotic strategies.</div>
+          <div data-pill="Forward head posture">Forward head posture means your head sits in front of your shoulders, increasing leverage and load on the neck and upper back. This often causes fatigue, tightness, and can contribute to headaches. We assess posture habits, screen/desk setup, upper-back mobility, and postural endurance. Care is usually a blend of hands-on work and very specific exercises to retrain positioning and strengthen support muscles.</div>
+          <div data-pill="Workplace ergonomic injuries">Workplace ergonomic injuries usually come from repetitive motion or long periods in one position—desk work, standing stations, tools, lifting, or driving. Symptoms often involve the neck, shoulders, low back, wrists, or hips. We assess your work demands, posture, and movement strategies, then recommend small adjustments that have big payoff (chair height, monitor position, keyboard/mouse placement, breaks, lifting mechanics). Supportive care focuses on reducing strain while improving resilience for your real-world tasks.</div>
+          <div data-pill="Upper Crossed Syndrome">Upper Crossed Syndrome is a common posture pattern: tight chest/upper traps/neck muscles with weaker deep neck flexors and mid-back stabilizers. It often presents as neck tension, shoulder tightness, and headaches, especially with prolonged sitting. We assess mobility and muscle balance and create a plan to restore better upper-body mechanics—typically involving thoracic mobility, scapular strengthening, and neck endurance work.</div>
+          <div data-pill="Lower Crossed Syndrome">Lower Crossed Syndrome is a pattern often involving tight hip flexors/low-back muscles with underactive glutes/abdominals, which can contribute to low-back tightness and hip discomfort. It’s common in people who sit a lot and then do sporadic activity. We assess hip mobility, core/glute control, and movement patterns. Supportive care usually emphasizes hip mobility plus progressive strengthening to restore balanced support for the spine and pelvis.</div>
+        </div>
+
       </div>
     </div>
     
@@ -208,6 +342,22 @@
 <span class="pill-item">Sports injuries</span>
 <span class="pill-item">Work-related injuries</span>
 <span class="pill-item">Overuse syndromes</span></div>
+
+        <div class="pill-detail" data-pill-detail hidden>
+          <h4 data-pill-title></h4>
+          <p data-pill-body></p>
+          <small>If an injury involves severe pain, head impact, dizziness, loss of strength, or trouble walking, seek urgent evaluation.</small>
+        </div>
+
+        <div class="pill-desc-list" aria-hidden="true">
+          <div data-pill="Slip and fall injuries">Slip and fall injuries can cause sprains, strains, joint irritation, bruising, and protective muscle guarding. Symptoms may show up immediately or develop over the next few days. We assess range of motion, tenderness patterns, and how the injury changed your movement. Supportive care focuses on calming inflammation/guarding, restoring motion safely, and building strength and stability so you return to normal activity without re-injury.</div>
+          <div data-pill="Car accident injuries">Car accident injuries can include whiplash, back strain, rib/shoulder irritation, and nervous system “guarding” that makes movement feel unsafe. Symptoms can evolve over time. We screen for red flags, evaluate motion and stability, and document functional limitations. Supportive care is usually gentle and progressive—aimed at restoring movement, reducing muscle guarding, and improving day-to-day comfort while coordinating with other providers as needed.</div>
+          <div data-pill="Whiplash">Whiplash refers to a rapid acceleration/deceleration injury that strains tissues of the neck and upper back. Symptoms can include pain, stiffness, headaches, and reduced range of motion. We evaluate motion, tenderness, posture, and tolerance to activity. Care is tailored and often includes gentle mobility, soft-tissue work, and gradual strengthening to restore confidence and function.</div>
+          <div data-pill="Sports injuries">Sports injuries range from minor strains to overuse problems and joint irritation. The goal is understanding what got overloaded—training volume, mechanics, recovery, or mobility restrictions. We evaluate movement patterns and load tolerance and create a plan that reduces flare-ups while keeping you active. Supportive care often includes mobility/soft-tissue work, progressive strengthening, and clear return-to-sport guidance.</div>
+          <div data-pill="Work-related injuries">Work-related injuries often come from repetitive tasks, long standing/sitting, awkward lifting, or high-demand physical work. We assess the exact work tasks, posture demands, and movement strategies contributing to symptoms. Care focuses on improving mechanics, restoring mobility, and building durability—with practical changes you can apply on the job (micro-breaks, lifting setup, tool/desk adjustments).</div>
+          <div data-pill="Overuse syndromes">Overuse syndromes happen when tissues are asked to do more than they can recover from—often due to sudden increases in training, repetitive work, poor mechanics, or limited mobility/strength. Symptoms are usually gradual and persistent. We identify overload sources and create a progressive plan: reduce the most irritating triggers, restore mobility, and build strength/endurance so the tissue becomes more resilient long-term.</div>
+        </div>
+
       </div>
     </div>
     
@@ -219,6 +369,21 @@
 <span class="pill-item">Pelvic pain</span>
 <span class="pill-item">Sciatica during pregnancy</span>
 <span class="pill-item">Postpartum alignment issues</span></div>
+
+        <div class="pill-detail" data-pill-detail hidden>
+          <h4 data-pill-title></h4>
+          <p data-pill-body></p>
+          <small>Pregnancy care is gentle and always tailored. We’ll also coordinate with your OB/midwife when needed.</small>
+        </div>
+
+        <div class="pill-desc-list" aria-hidden="true">
+          <div data-pill="Pregnancy low-back pain">Pregnancy low-back pain is common due to changes in posture, ligament laxity, shifting center of mass, and increased load through the pelvis and spine. Pain may worsen with prolonged standing, walking, rolling in bed, or sitting. We assess pelvic mechanics, hip mobility, and muscle tension patterns and use gentle, pregnancy-appropriate techniques. Supportive care can include safe mobilization, soft-tissue work, posture strategies, and exercises to improve comfort and movement.</div>
+          <div data-pill="Round ligament discomfort">Round ligament discomfort often feels like a pulling or sharp sensation in the lower abdomen/groin, especially with sudden movement, getting up quickly, coughing, or rolling in bed. While it’s common, it can be uncomfortable. We focus on supportive strategies—gentle movement guidance, pelvic/hip mechanics, and ways to reduce strain during daily activities. We encourage medical evaluation if symptoms are unusual or concerning.</div>
+          <div data-pill="Pelvic pain">Pelvic pain during pregnancy can involve the SI joints, pubic symphysis, or surrounding muscles, often worsened by walking, stairs, standing on one leg, or changing positions. We assess pelvic stability and motion patterns and use gentle, supportive care to reduce muscle guarding and improve movement comfort. Recommendations may include activity modification, supportive exercises, and posture strategies tailored to your stage of pregnancy.</div>
+          <div data-pill="Sciatica during pregnancy">Sciatic-like symptoms during pregnancy can be influenced by pelvic mechanics, posture changes, and muscle tension (including deep hip muscles). Symptoms may include buttock pain or discomfort traveling down the leg. We assess movement triggers and provide supportive care aimed at reducing irritation, improving comfort positions (sleeping/sitting), and gentle mobility and stabilization strategies appropriate for pregnancy.</div>
+          <div data-pill="Postpartum alignment issues">After delivery, posture, core control, and pelvic mechanics often change rapidly. Many people notice low-back pain, hip discomfort, mid-back tension (especially from feeding/holding baby), or a feeling of “off balance.” We assess mobility, posture habits, and functional demands and provide supportive care focused on restoring comfortable movement and building strength/endurance for real-life activities like lifting, carrying, and long feeding sessions.</div>
+        </div>
+
       </div>
     </div>
     
@@ -235,6 +400,26 @@
 <span class="pill-item">Digestive Disorders</span>
 <span class="pill-item">Bedwetting</span>
 <span class="pill-item">Ear Infections</span></div>
+
+        <div class="pill-detail" data-pill-detail hidden>
+          <h4 data-pill-title></h4>
+          <p data-pill-body></p>
+          <small>Pediatric care is gentle and always age-appropriate. We coordinate with your child’s pediatrician when needed.</small>
+        </div>
+
+        <div class="pill-desc-list" aria-hidden="true">
+          <div data-pill="Postural issues">Kids can develop posture strain from backpacks, sports, rapid growth, and increased screen time. Parents may notice slouching, uneven shoulders, or frequent “aches.” We look at movement habits, flexibility, strength, and daily routines. Supportive care may include gentle mobility, posture coaching, and simple exercises that fit a child’s age and activity level.</div>
+          <div data-pill="Torticollis">Torticollis is when a baby or child prefers turning the head one direction, often due to muscle tightness. Early evaluation matters because it can affect head shape and movement development. We assess gentle range of motion and refer or coordinate with pediatric providers/physical therapy when appropriate. Supportive care can include gentle techniques and parent-friendly home strategies.</div>
+          <div data-pill="Colic">Colic involves frequent, difficult-to-soothe crying in infants. Families sometimes seek supportive care focused on comfort and gentle movement. We emphasize that colic has multiple potential contributors and encourage appropriate pediatric evaluation. Any care provided is gentle and conservative, and we coordinate if additional medical guidance is needed.</div>
+          <div data-pill="Restlessness">Restlessness in children can involve difficulty settling, sleep discomfort, or frequent shifting positions. While many factors can contribute, some families explore supportive care to address musculoskeletal comfort and posture habits. We assess gentle mobility and tension patterns and provide practical, age-appropriate strategies.</div>
+          <div data-pill="Scoliosis monitoring">When scoliosis is present, monitoring and coordination with medical providers is important. Supportive chiropractic care may help comfort, posture awareness, and movement quality, but it does not replace medical monitoring. We help track changes, encourage appropriate imaging/follow-up decisions with your provider, and focus on comfort and function.</div>
+          <div data-pill="Growing pains">Growing pains are typically aches (often in the legs) that can happen during growth phases, usually later in the day or at night. While common, persistent or severe symptoms should be evaluated. We can assess movement patterns, flexibility, and activity load, and provide supportive strategies like gentle mobility, activity guidance, and comfort measures.</div>
+          <div data-pill="Sports-related strains">Kids’ sports strains often come from overuse, rapid increases in training, or limited mobility during growth spurts. We assess movement mechanics, training load, and flexibility/strength balance. Supportive care focuses on safe mobility, gradual strengthening, and guidance to reduce recurrence and support a healthy return to activity.</div>
+          <div data-pill="Digestive Disorders">Digestive concerns are best evaluated with your child’s pediatrician. Some families seek supportive care aimed at overall comfort and function. We always encourage appropriate medical evaluation and coordinate care when needed. Any chiropractic support is gentle and conservative.</div>
+          <div data-pill="Bedwetting">Bedwetting can have many causes and should be discussed with a pediatrician, especially if it’s new or accompanied by other symptoms. Some families explore supportive care as part of a broader plan focused on overall function. We emphasize coordination and appropriate medical screening.</div>
+          <div data-pill="Ear Infections">Ear infections require pediatric evaluation and appropriate medical management. Some families seek supportive care focused on comfort and general wellness. We encourage proper medical care and coordinate when needed. Any chiropractic support is gentle and conservative.</div>
+        </div>
+
       </div>
     </div>
     
@@ -247,6 +432,22 @@
 <span class="pill-item">Nerve compression</span>
 <span class="pill-item">Reduced mobility</span>
 <span class="pill-item">Muscle weakness (non-emergent)</span></div>
+
+        <div class="pill-detail" data-pill-detail hidden>
+          <h4 data-pill-title></h4>
+          <p data-pill-body></p>
+          <small>If you have progressive weakness, loss of bowel/bladder control, severe numbness, or sudden symptoms after injury, seek urgent evaluation.</small>
+        </div>
+
+        <div class="pill-desc-list" aria-hidden="true">
+          <div data-pill="Numbness / tingling">Numbness/tingling can feel like pins-and-needles, reduced sensation, or “buzzing” in an arm, hand, leg, or foot. It may be related to nerve irritation at the neck, shoulder region, low back, or peripheral entrapment sites (elbow/wrist). We evaluate symptom patterns, triggers, posture and movement factors, and screen for neurological red flags. Supportive care focuses on reducing irritation, improving mobility and mechanics, and providing strategies that calm symptoms—while referring out promptly if needed.</div>
+          <div data-pill="Burning sensation">A burning sensation can be nerve-related, soft-tissue related, or sometimes linked to inflammation/irritation. We assess where it occurs, what triggers it, whether it changes with posture, and if it travels. The plan may include gentle mobility, soft-tissue work, nerve-calming strategies, and referral if the symptom pattern suggests a non-musculoskeletal cause.</div>
+          <div data-pill="Shooting pain down arms or legs">Shooting pain that travels into the arm or leg often suggests nerve involvement, though muscle referral and joint pain can mimic it. We look at what positions reproduce the symptom (sitting, bending, looking up) and assess movement, posture, and nerve sensitivity signs. Supportive care aims to reduce irritation, improve mechanics, and restore confidence in movement, with careful monitoring for changes that require medical evaluation.</div>
+          <div data-pill="Nerve compression">Nerve compression can produce pain, tingling, numbness, or weakness depending on location and severity. We assess likely sites (neck, low back, wrist, etc.), test motion and symptom response, and screen for red flags. Care focuses on reducing stress on the nerve through positioning, mobility, and stabilization strategies, and coordinating imaging/referral when appropriate.</div>
+          <div data-pill="Reduced mobility">Reduced mobility can be due to joint stiffness, muscle guarding, pain avoidance, or postural strain. It often shows up as difficulty turning, bending, or reaching without discomfort. We identify the specific restrictions and build a plan to restore motion safely—often combining hands-on care with a simple home routine so improvements stick.</div>
+          <div data-pill="Muscle weakness (non-emergent)">Muscle weakness has many possible causes. When it’s non-emergent and stable, we evaluate movement, joint function, nerve sensitivity signs, and muscular control to identify contributing factors. If weakness is new, worsening, or paired with numbness or severe pain, we recommend prompt medical evaluation. Supportive care may include stability training, graded strengthening, and coordination with other providers as needed.</div>
+        </div>
+
       </div>
     </div>
     
@@ -261,6 +462,24 @@
 <span class="pill-item">Standing/walking job pain</span>
 <span class="pill-item">Allergies</span>
 <span class="pill-item">Anxiety</span></div>
+
+        <div class="pill-detail" data-pill-detail hidden>
+          <h4 data-pill-title></h4>
+          <p data-pill-body></p>
+          <small>We focus on comfort + function. For non-musculoskeletal concerns, we’ll coordinate and refer appropriately.</small>
+        </div>
+
+        <div class="pill-desc-list" aria-hidden="true">
+          <div data-pill="Chronic pain">Chronic pain is pain that persists beyond the usual healing time and can be influenced by multiple factors—movement habits, sleep, stress, sensitization, and repeated flare triggers. The best plan is often steady and personalized rather than aggressive. We assess your functional limits, triggers, and movement patterns and build a plan aimed at improving daily ability: graded activity, mobility, strengthening, and flare-up management strategies. The goal is practical progress you can maintain long-term.</div>
+          <div data-pill="Stress-related muscle tension">Stress-related muscle tension commonly shows up in the neck, shoulders, jaw, and mid-back, often causing tightness, headaches, or a “wired” feeling. We assess where tension accumulates and what posture patterns reinforce it. Supportive care can include soft-tissue techniques, breathing and posture strategies, mobility work, and simple routines you can use during stressful weeks to prevent buildup.</div>
+          <div data-pill="Fatigue from postural strain">Postural fatigue happens when the body’s support muscles have to work overtime (desk work, long drives, standing jobs). You may feel achy, heavy, or “worn out” more than sharply painful. We assess posture endurance, mobility restrictions, and daily habits. Supportive care usually includes improving mobility where you’re stiff and strengthening endurance so holding a good posture feels natural—not forced.</div>
+          <div data-pill="Limited mobility affecting daily life">When mobility limits daily life, it often affects simple things: getting out of bed, bending, lifting, turning the head, climbing stairs, or walking comfortably. We evaluate which movements are limited and why (joint stiffness, muscle guarding, fear of movement, load intolerance). Supportive care focuses on restoring motion safely, building strength, and creating a realistic plan so daily tasks become easier and less painful.</div>
+          <div data-pill="Desk-job pain">Desk-job pain often involves the neck, shoulders, mid-back, wrists, and hips from sustained sitting, forward head posture, and limited movement breaks. We assess workstation setup, posture habits, and mobility restrictions. Supportive care usually combines hands-on work with high-impact changes: monitor height, chair setup, keyboard/mouse placement, and a simple “micro-break” routine that keeps symptoms from building through the day.</div>
+          <div data-pill="Standing/walking job pain">Standing/walking job pain can involve the feet, knees, hips, and low back due to long hours of load, hard surfaces, and repetitive motion. We assess foot mechanics, ankle mobility, hip control, and posture strategies. Supportive care may include joint/mobility work, soft-tissue techniques, footwear guidance, and (when appropriate) orthotic support plus strengthening for better long-day tolerance.</div>
+          <div data-pill="Allergies">Allergies are primarily an immune/systemic concern and should be managed with your medical provider. Some patients ask about supportive care focused on overall comfort and function during allergy season—especially if congestion-related posture (head forward, tension) increases headaches or neck tightness. We focus on musculoskeletal comfort and coordinate/referral as needed.</div>
+          <div data-pill="Anxiety">Anxiety can increase muscle tension, pain sensitivity, and sleep disruption—creating a cycle of tightness and discomfort. We can support the physical side: reducing tension patterns, improving posture/movement tolerance, and offering practical strategies that help your body feel calmer. We also encourage appropriate mental health support when needed and coordinate care as appropriate.</div>
+        </div>
+
       </div>
     </div>
     
@@ -303,7 +522,7 @@
         <a class="footer-link" href="about.html#faqs">FAQs</a><br/>
         <a class="footer-link" href="privacy.html">Privacy Policy</a><br/>
         <a class="footer-link" href="terms.html">Terms of Service</a><br/>
-        <a class="footer-link" href="disclaimers.html">Disclaimers</a>
+        <a class="footer-link" href="disclaimers.html">Disclaimers</a><br/>
       </div>
 
       <div>
@@ -321,5 +540,51 @@
   </footer>
 
   <script src="js/script.js"></script>
+
+  <!-- Click pill => show inline description INSIDE the same acc-panel -->
+  <script>
+    (function () {
+      function findPanelRoot(el) {
+        return el.closest('.acc-panel');
+      }
+
+      function clearSelected(panel) {
+        panel.querySelectorAll('.pill-item.is-selected').forEach(p => p.classList.remove('is-selected'));
+      }
+
+      function onPillClick(pill) {
+        const panel = findPanelRoot(pill);
+        if (!panel) return;
+
+        const key = (pill.textContent || '').trim();
+        const detail = panel.querySelector('[data-pill-detail]');
+        const titleEl = panel.querySelector('[data-pill-title]');
+        const bodyEl = panel.querySelector('[data-pill-body]');
+        const descNode = panel.querySelector('.pill-desc-list [data-pill="' + CSS.escape(key) + '"]');
+
+        clearSelected(panel);
+        pill.classList.add('is-selected');
+
+        if (!detail || !titleEl || !bodyEl) return;
+
+        titleEl.textContent = key;
+
+        if (descNode) {
+          bodyEl.textContent = descNode.textContent.trim();
+        } else {
+          bodyEl.textContent = 'Description coming soon.';
+        }
+
+        detail.hidden = false;
+
+        // Scroll a tiny bit so the description is visible without jumping the whole page.
+        detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      document.querySelectorAll('.pill-item').forEach((pill) => {
+        pill.addEventListener('click', () => onPillClick(pill));
+      });
+    })();
+  </script>
 </body>
 </html>
