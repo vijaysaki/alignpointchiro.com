@@ -1,377 +1,238 @@
-<html>
-    <head>
-        <title>AlignPoint chiropractic</title>
-        <style>
-            /* Importing a Google Font */
-@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@700&display=swap");
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AlignPoint Chiropractic | Home</title>
+  <meta name="description" content="AlignPoint Chiropractic in Lexington, KY. Evidence-based chiropractic care. New patient special. Conditions treated and what to expect." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="theme">
+  <a class="skip-link" href="#main">Skip to content</a>
 
-/* Global CSS Reset */
-* {
-	margin: 0;
-	box-sizing: border-box;
-}
+<header class="site-header" id="top">
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="index.html" aria-label="AlignPoint Chiropractic Home">
+      <img src="assets/alignpoint-logo-dark.png" class="brand-logo" alt="AlignPoint Chiropractic">
+      </a>
 
-html,
-body {
-	height: 100%;
-}
+      <div class="topbar-right">
+        <div class="header-contact">
+          <div class="header-address">
+            1132 Winchester Rd 
+            Suite #125 
+            Lexington, KY 40505 | <a href="tel:+18592540059">(859) 254-0059</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-body {
-	font-family: "Red Hat Text", sans-serif;
-}
+  <!-- MENU BAR -->
+  <div class="menubar">
+    <div class="container menubar-inner">
+      <nav class="site-nav" id="siteNav" aria-label="Primary navigation">
+        <ul class="nav-list">
+          <li><a class="nav-link is-active" href="index.html">Home</a></li>
+          <li><a class="nav-link " href="about.html">About</a></li>
 
-img {
-	display: block;
-	max-width: 100%;
-}
+          <li class="has-dropdown">
+            <button class="nav-link nav-btn " type="button" aria-expanded="false">
+              Conditions <span class="chev" aria-hidden="true"></span>
+            </button>
+            <div class="dropdown" role="menu">
+              <div class="dd-cols">
+                <div class="dd-col">
+                  <div class="dd-title">Neck</div>
+                  <a href="conditions.html#neck">Neck-related</a>
+                  <a href="conditions.html#headache">Headaches</a>
+                  <a href="conditions.html#posture">Posture</a>
+                </div>
+                <div class="dd-col">
+                  <div class="dd-title">Back</div>
+                  <a href="conditions.html#back">Back-related</a>
+                  <a href="conditions.html#injury">Injuries</a>
+                  <a href="conditions.html#nerve">Nerve & function</a>
+                </div>
+                <div class="dd-col">
+                  <div class="dd-title">Extremities</div>
+                  <a href="conditions.html#upper">Shoulder/Arm/Wrist</a>
+                  <a href="conditions.html#lower">Hip/Knee/Ankle/Foot</a>
+                  <a href="conditions.html#lifestyle">Lifestyle & chronic</a>
+                </div>
+              </div>
+            </div>
+          </li>
 
-/* Custom CSS Variables */
-:root {
-	/* Colors */
-	--Grayish_blue: hsl(237, 18%, 59%);
-	--Soft_red: hsl(345, 95%, 68%);
-	--White: hsl(0, 0%, 100%);
-	--Dark_desaturated_blue: hsl(236, 21%, 26%);
-	--Very_dark_blue: hsl(235, 16%, 14%);
-	--Very_dark_blac_blue: hsl(234, 17%, 12%);
+          <li><a class="nav-link " href="foot-levelers.html">Foot Levelers</a></li>
 
-	/* font size */
-	--h-text: 1.1rem;
-	--p-text: 1.8rem;
-	--s-text: 0.5rem;
+          <li class="has-dropdown">
+            <button class="nav-link nav-btn " type="button" aria-expanded="false">
+              New Patients <span class="chev" aria-hidden="true"></span>
+            </button>
+            <div class="dropdown" role="menu">
+              <a href="new-patients.html">New Patients Overview</a>
+              <a href="new-patient-special.html">New Patient Special</a>
+              <a href="what-to-expect.html">What to Expect</a>
+              <a href="patient-portal.html">New Patient Portal</a>
+            </div>
+          </li>
 
-	/* custom-shape */
-	--circle-width: 0.25em;
-	--circle-height: 0.45em;
-}
+          <li><a class="nav-link " href="contact.html">Contact</a></li>
 
-/* Font Styles */
-.heading {
-	font-size: var(--h-text);
-	color: var(--White);
-	letter-spacing: 0.5ch;
-	text-align: center;
-	margin-bottom: 3rem;
-}
 
-.primary {
-	font-size: var(--p-text);
-	color: var(--Soft_red);
-	text-align: center;
-}
+        <li class="nav-cta">
+          <a class="btn btn-primary btn-cta" href="new-patient-special.html">New Patient Special</a>
+        </li>
 
-.sub-heading {
-	font-size: var(--s-text);
-	color: var(--Grayish_blue);
-	text-align: center;
-	letter-spacing: 0.5ch;
-	margin-top: 1em;
-}
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
 
-/* General CSS */
+  <main id="main">
+    
+<section class="hero">
+  <div class="container">
+    <div class="hero-card">
+      <div class="hero-inner">
+        <div>
+          <div class="badge">Lexington, KY Chiropractor</div>
+          <h1>Targeted Chiropractic Care,<br><span class="accent">Lasting Results.</span></h1>
+          <p>Personalized, evidence-based chiropractic care focused on the root cause—so you can feel better, move better, and live healthier.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="new-patient-special.html">New Patient Special</a>
+            <a class="btn btn-secondary" href="contact.html">Contact</a>
+          </div>
+        </div>
+        <div class="media" aria-hidden="true"></div>
+      </div>
+    </div>
 
-main {
-	min-height: 100%;
-	display: grid;
-	justify-content: center;
-}
+    <div class="card welcome">
+      <div class="welcome-grid">
+        <div class="welcome-media" aria-hidden="true"></div>
+        <div class="welcome-body">
+          <div class="kicker">Welcome</div>
+          <h2 class="h2">Welcome to <span style="color:var(--primary)">AlignPoint</span> Chiropractic</h2>
+          <p class="lead">
+            Dr. Kristian Esteve, D.C. — known to his patients as Dr. K — is dedicated to helping patients relieve pain, restore mobility,
+            and improve quality of life through personalized, modern chiropractic care.
+          </p>
 
-.background {
-	background-color: var(--Very_dark_blue);
-	background-image: url(https://i.postimg.cc/rmwYwjnp/bg-stars.png),
-		url(https://i.postimg.cc/hGg5HcVT/pattern-hills.png);
-	background-position: top, bottom;
-	background-repeat: repeat-x;
-	background-size: 100% 75%, 100% 25%;
-	position: relative;
-	z-index: 2;
-}
+          <div class="actions-row">
+            <a class="btn btn-primary" href="about.html">Meet Dr. K</a>
+            <a class="btn btn-secondary" href="what-to-expect.html">What to Expect</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-.background::after {
-	content: "";
-	position: absolute;
-	width: 100%;
-	height: 75%;
-	background-color: #322338;
-	filter: blur(100px);
-	opacity: 0.35;
-	z-index: -1;
-}
+<section class="section">
+  <div class="container">
+    <div class="grid-3">
+      <div class="tile">
+        <h3>Our Mission</h3>
+        <p>Help patients feel better, move better, and live healthier—naturally.</p>
+      </div>
+      <div class="tile">
+        <h3>Our Goal</h3>
+        <p>Clear answers, a plan you understand, and steady progress toward long-term results.</p>
+      </div>
+      <div class="tile">
+        <h3>Patient Experience</h3>
+        <p>Thorough exams, modern imaging when appropriate, and compassionate, straightforward communication.</p>
+      </div>
+    </div>
 
-.container {
-	margin: 1em;
-}
+    <hr class="hr"/>
 
-.center {
-	align-self: flex-end;
-}
+    <div class="callout">
+      <h3>Gift Cards</h3>
+      <p>Interested in a gift card for chiropractic care? Ask our team—options will be available as the office finishes build-out.</p>
+      <div class="actions-row">
+        <a class="btn btn-primary" href="contact.html">Contact Us</a>
+        <a class="btn btn-secondary" href="new-patient-special.html">New Patient Special</a>
+      </div>
+    </div>
 
-.countdown-timer {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	gap: 1em;
-}
+    <hr class="hr"/>
 
-.timer-box {
-	width: 4rem;
-	padding: 0.5rem;
-	text-align: center;
-	background-color: var(--Dark_desaturated_blue);
-	position: relative;
-	border-radius: 0.25em;
-}
+    <div class="callout">
+      <h3>Office Photos</h3>
+      <p>Office photos will be added once the space is complete (end of year). For now, this area is reserved for a simple gallery.</p>
+    </div>
 
-.sheet {
-	position: absolute;
-	width: 100%;
-	height: 50%;
-	left: 0;
-	top: 0;
-	right: 0;
-	background-color: var(--Very_dark_blue);
-	opacity: 0.35;
-}
+    <hr class="hr"/>
 
-.flip {
-	transition: transform 1s;
-	transform: translate(0%, 100%) scaleY(-1);
-}
+    <div class="callout">
+      <h3>Quick Contact</h3>
+      <p><strong>Phone:</strong> (859) 254-0059 &nbsp; • &nbsp; <strong>Address:</strong> <em>1132 Winchester Rd, Suite #125, Lexington, KY 40505</em></p>
+      <div class="actions-row">
+        <a class="btn btn-primary" href="contact.html">Get Directions</a>
+        <a class="btn btn-secondary" href="patient-portal.html">New Patient Portal</a>
+      </div>
+    </div>
 
-.circle-left {
-	width: var(--circle-width);
-	height: var(--circle-height);
-	position: absolute;
-	background-color: var(--Very_dark_blac_blue);
-	border-top-right-radius: 100%;
-	border-bottom-right-radius: 100%;
-	top: 45%;
-	left: 0;
-}
+    <hr class="hr"/>
 
-.circle-right {
-	width: var(--circle-width);
-	height: var(--circle-height);
-	position: absolute;
-	background-color: var(--Very_dark_blac_blue);
-	border-top-left-radius: 100%;
-	border-bottom-left-radius: 100%;
-	top: 45%;
-	right: 0;
-}
+    <p class="lead"><strong>New Patients:</strong> Start here → <a href="new-patient-special.html" style="color:var(--primary); font-weight:800; text-decoration:none;">New Patient Special</a></p>
+  </div>
+</section>
 
-.bottom {
-	align-self: end;
-	margin-bottom: 4em;
-	display: flex;
-	justify-content: center;
-	gap: 2em;
-}
+  </main>
 
-.social-icon {
-	cursor: pointer;
-}
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-brand">AlignPoint Chiropractic</div>
+        <div class="footer-text">
+          Dr. Kristian Esteve, D.C. — CEO / Owner<br/>
+          1132 Winchester Rd<br/>
+          Suite #125<br/>
+          Lexington, KY 40505<br/><br/>
+          <strong>Main:</strong> <a class="footer-link" href="tel:+18592540059">(859) 254-0059</a><br/>
+          <strong>Cell:</strong> <a class="footer-link" href="tel:+12136050761">(213) 605-0761</a>
+        </div>
+      </div>
 
-.social-icon:hover {
-	filter: brightness(0) saturate(100%) invert(54%) sepia(7%) saturate(5054%)
-		hue-rotate(297deg) brightness(99%) contrast(99%);
-}
+      <div>
+        <div class="footer-title">New Patients</div>
+        <a class="footer-link" href="new-patient-special.html">New Patient Special</a><br/>
+        <a class="footer-link" href="what-to-expect.html">What to Expect</a><br/>
+        <a class="footer-link" href="patient-portal.html">New Patient Portal</a>
+      </div>
 
-/* Media Queries for Responsive Design */
-@media (min-width: 430px) {
-	:root {
-		--h-text: 1.25rem;
-		--p-text: 2rem;
-		--s-text: 0.5rem;
+      <div>
+        <div class="footer-title">Office</div>
+        <a class="footer-link" href="about.html#faqs">FAQs</a><br/>
+        <a class="footer-link" href="privacy.html">Privacy Policy</a><br/>
+        <a class="footer-link" href="terms.html">Terms of Service</a><br/>
+        <a class="footer-link" href="disclaimers.html">Disclaimers</a>
+      </div>
 
-		--circle-width: 0.35em;
-		--circle-height: 0.65em;
-	}
+      <div>
+        <div class="footer-title">Map</div>
+        <div class="map-box" aria-label="Google map placeholder">
+          <div class="map-placeholder">Google Map Embed</div>
+        </div>
+      </div>
+    </div>
 
-	.timer-box {
-		width: 5rem;
-		padding: 0.75rem;
-	}
-}
+    <div class="container footer-bottom">
+      <span>© <span id="year"></span> AlignPoint Chiropractic</span>
+      <a class="footer-link" href="#top">Back to top</a>
+    </div>
+  </footer>
 
-@media (min-width: 550px) {
-	:root {
-		--p-text: 3rem;
-		--s-text: 0.75rem;
-
-		--circle-width: 0.4em;
-		--circle-height: 0.7em;
-	}
-
-	.timer-box {
-		width: 6rem;
-		padding: 0.75rem;
-	}
-}
-
-@media (min-width: 800px) {
-	:root {
-		--p-text: 4rem;
-	}
-
-	.timer-box {
-		width: 8rem;
-		padding: 1rem;
-	}
-}
-
-        </style>
-    </head>
-    <body>
-        <!-- Main content container with background styling -->
-<main class="background">
-	<div class="container center">
-		<!-- Heading with a launch message -->
-		<h1 class="heading">WE'RE LAUNCHING SOON</h1>
-
-		<!-- Countdown timer section -->
-		<section class="countdown-timer">
-
-			<!-- Countdown for Days -->
-			<div class="countdown-info">
-				<div class="timer-box">
-					<div id="flip-sheet-day" class="sheet"></div>
-					<div class="circle-left"></div>
-					<p id="days" class="primary">00</p>
-					<div class="circle-right"></div>
-				</div>
-
-				<p class="sub-heading">DAYS</p>
-			</div>
-
-			<!-- Countdown for Hours -->
-			<div class="countdown-info">
-				<div class="timer-box">
-					<div id="flip-sheet-hour" class="sheet"></div>
-					<div class="circle-left"></div>
-					<p id="hours" class="primary">00</p>
-					<div class="circle-right"></div>
-				</div>
-				<p class="sub-heading">HOURS</p>
-			</div>
-
-			<!-- Countdown for Minutes -->
-			<div class="countdown-info">
-				<div class="timer-box">
-					<div id="flip-sheet-min" class="sheet"></div>
-					<div class="circle-left"></div>
-					<p id="minutes" class="primary">00</p>
-					<div class="circle-right"></div>
-				</div>
-				<p class="sub-heading">MINUTES</p>
-			</div>
-
-			<!-- Countdown for Seconds -->
-			<div class="countdown-info">
-				<div class="timer-box">
-					<div id="flip-sheet-sec" class="sheet"></div>
-					<div class="circle-left"></div>
-					<p id="seconds" class="primary">00</p>
-					<div class="circle-right"></div>
-				</div>
-				<p class="sub-heading">SECONDS</p>
-			</div>
-
-		</section>
-	</div>
-
-	<!-- Social Media Icons at the bottom -->
-	<div class="container bottom">
-		<img src="https://i.postimg.cc/9fpn2KBS/icon-facebook.png" alt="facebook" class="social-icon">
-		<img src="https://i.postimg.cc/Nf3Vk1MN/icon-pinterest.png" alt="pinterest" class="social-icon">
-		<img src="https://i.postimg.cc/Gmvf7HTb/icon-instagram.png" alt="instagram" class="social-icon">
-	</div>
-</main>
-    </body>
-<script>
-  // Grab number elements
-  const dayEl = document.getElementById("days");
-  const hourEl = document.getElementById("hours");
-  const minEl = document.getElementById("minutes");
-  const secEl = document.getElementById("seconds");
-
-  // Grab flip sheet elements
-  const dayFlip = document.getElementById("flip-sheet-day");
-  const hourFlip = document.getElementById("flip-sheet-hour");
-  const minFlip = document.getElementById("flip-sheet-min");
-  const secFlip = document.getElementById("flip-sheet-sec");
-
-  // Flip helpers
-  const flip_anime_sec = () => secFlip.classList.toggle("flip");
-
-  const flip_anime = (obj) => {
-    obj.classList.add("flip");
-    setTimeout(() => obj.classList.remove("flip"), 1000);
-  };
-
-  // Format with leading zero
-  const pad2 = (n) => String(n).padStart(2, "0");
-
-  // Target: today at 6:00 PM (local time).
-  // If already past 6:00 PM, target becomes tomorrow at 6:00 PM.
-  const getTarget = () => {
-    const now = new Date();
-    const target = new Date(
-      now.getFullYear(),
-      now.getMonth(),
-      now.getDate(),
-      18, 0, 0, 0 // 18:00:00
-    );
-    if (now >= target) target.setDate(target.getDate() + 1);
-    return target;
-  };
-
-  let targetTime = getTarget();
-
-  // Track previous values so we can flip only when they change
-  let prev = { d: null, h: null, m: null, s: null };
-
-  const update = () => {
-    const now = new Date();
-
-    // If we've reached/passed target, stop at 00:00:00:00 (or pick a new target)
-    let diffMs = targetTime - now;
-
-    if (diffMs <= 0) {
-      diffMs = 0;
-      clearInterval(timerInterval);
-      clearInterval(secFlipInterval);
-    }
-
-    const totalSeconds = Math.floor(diffMs / 1000);
-
-    const d = Math.floor(totalSeconds / (24 * 3600));
-    const h = Math.floor((totalSeconds % (24 * 3600)) / 3600);
-    const m = Math.floor((totalSeconds % 3600) / 60);
-    const s = totalSeconds % 60;
-
-    // Flip animation only when the value actually changes
-    if (prev.m !== null && m !== prev.m) flip_anime(minFlip);
-    if (prev.h !== null && h !== prev.h) flip_anime(hourFlip);
-    if (prev.d !== null && d !== prev.d) flip_anime(dayFlip);
-
-    // Update text
-    dayEl.innerText = pad2(d);
-    hourEl.innerText = pad2(h);
-    minEl.innerText = pad2(m);
-    secEl.innerText = pad2(s);
-
-    prev = { d, h, m, s };
-  };
-
-  // Initial paint
-  update();
-
-  // Run countdown
-  const timerInterval = setInterval(update, 1000);
-
-  // Keep your seconds flip effect
-  const secFlipInterval = setInterval(flip_anime_sec, 1000);
-</script>
-
+  <script src="js/script.js"></script>
+</body>
 </html>
