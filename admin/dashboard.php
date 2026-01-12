@@ -1,20 +1,23 @@
-<?include("db.php"); 
-	if($_POST['action']=="edit"){
-		$sql="update tblWebsite SET sTitle='".mysql_real_escape_string($_POST['txtTitle'])."',
-			sContent='".mysql_real_escape_string($_POST['content1'])."',
-			sTitle_ES='".mysql_real_escape_string($_POST['txtTitle_ES'])."',
-			sContent_ES='".mysql_real_escape_string($_POST['content2'])."',
-			sTitle_PT='".mysql_real_escape_string($_POST['txtTitle_PT'])."',sContent_PT='".mysql_real_escape_string($_POST['content3'])."' where sPageName='index.php'";
-		@mysql_query($sql,$link);
-		$Message="<b><i><font color='red'>Changes Saved!</font></i></b>";
+<?php
+require_once("db.php");
 
-	}
-	$sql="select * from tblWebsite where sPageName='index.php'";
-	$result=@mysql_query($sql,$link);
-	$row=mysql_fetch_array($result);
+$pdo = db();
+$Message = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'edit') {
+    $sql = "UPDATE tblWebsite SET title = :title, content = :content WHERE sPageName = 'index.php'";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+        ':title' => $_POST['txtTitle'] ?? '',
+        ':content' => $_POST['content1'] ?? ''
+    ]);
+    $Message = "<b><i><font color='red'>Changes Saved!</font></i></b>";
+}
+
+$sql = "SELECT * FROM tblWebsite WHERE sPageName = 'index.php'";
+$stmt = $pdo->query($sql);
+$row = $stmt->fetch();
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
 <meta content="en-us" http-equiv="Content-Language" />
@@ -111,11 +114,11 @@
 			<tr>
 				<td width="65"><b>Title</b></td>
 				<td width="408">
-				<input type="text" name="txtTitle" size="30" value="<?echo $row['sTitle'];?>"></td>
+				<input type="text" name="txtTitle" size="30" value="<?echo $row['title'];?>"></td>
 			</tr>
 			<tr>
 				<td width="65" valign="top"><b>Content</b></td>
-				<td width="408"><textarea id="textarea1" rows="7" name="content1" cols="30"><?echo $row['sContent'];;?></textarea>
+				<td width="408"><textarea id="textarea1" rows="7" name="content1" cols="30"><?echo $row['content'];;?></textarea>
 				<script language="javascript1.2">generate_wysiwyg('textarea1');	</script>
 				</td>
 			</tr>
@@ -130,40 +133,6 @@
 				<td width="65">&nbsp;</td>
 				<td width="408">&nbsp;</td>
 				</tr>
-			<tr>
-				<td width="65"><b>Title</b></td>
-				<td width="408">
-				<input type="text" name="txtTitle_ES" size="30" value="<?echo $row['sTitle_ES'];?>"></td>
-				</tr>
-			<tr>
-				<td width="65" valign="top"><b>Content</b></td>
-				<td width="408"><textarea id="textarea2" rows="7" name="content2" cols="30"><?echo $row['sContent_ES'];?></textarea>
-				<script language="javascript1.2">generate_wysiwyg('textarea2');	</script>
-				</td>
-				</tr>
-			<tr>
-				<td width="65">&nbsp;</td>
-				<td width="408">&nbsp;</td>
-				</tr>
-			<tr>
-				<td width="473" colspan="2"><b>Portuguese</b></td>
-				</tr>
-			<tr>
-				<td width="65">&nbsp;</td>
-				<td width="408">&nbsp;</td>
-			</tr>
-			<tr>
-				<td width="65"><b>Title</b></td>
-				<td width="408">
-				<input type="text" name="txtTitle_PT" size="30" value="<?echo $row['sTitle_PT'];?>"></td>
-			</tr>
-			<tr>
-				<td width="65" valign="top"><b>Content</b></td>
-				<td width="408"><textarea id="textarea3" rows="7" name="content3" cols="30"><?echo $row['sContent_PT'];?></textarea>
-				<script language="javascript1.2">generate_wysiwyg('textarea3');	</script>
-				</td>
-			
-			</tr>
 			<tr>
 				<td width="65">&nbsp;</td>
 				<td width="408"><input type="submit" value="Submit" name="B1"></td>
