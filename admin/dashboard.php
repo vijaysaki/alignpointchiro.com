@@ -16,13 +16,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 
 $sql = "SELECT * FROM pages WHERE slug = 'index'";
 $stmt = $pdo->query($sql);
-$row = $stmt->fetch();
+$row = $stmt->fetch() ?: ['title' => '', 'content' => ''];
+
 ?>
 
 <head>
 <meta content="en-us" http-equiv="Content-Language" />
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<title>Manage Your Property - <?echo $_SESSION['CompanyName'];?></title>
+<title>Manage Your Property - <?= $_SESSION['CompanyName'];?></title>
 <link href="style.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
 .auto-style1 {
@@ -51,12 +52,12 @@ $row = $stmt->fetch();
 		<table border="0" width="100%" cellspacing="4" cellpadding="4" class="AdminTitle">
 			<tr>
 				<td>
-				<p align="right">Manage <?echo $_SESSION['CompanyName'];?></td>
+				<p align="right">Manage <?= $_SESSION['CompanyName'];?></td>
 			</tr>
 		</table>
 		</center>
 			<br />
-			<?echo date("l, F d, Y h:i" ,time());?>&nbsp; <br />
+			<?= date("l, F d, Y h:i" ,time());?>&nbsp; <br />
 		<br />
 		<a target="_blank" class="LeftLink" href="http://www.calaispark.com">View the Site</a> | 
 		<a class="LeftLink" href="sign-out.php">Sign Out&nbsp; </a> <br />
@@ -88,11 +89,11 @@ $row = $stmt->fetch();
 		</td>
 		<td bgcolor="white" style="width: 20px"></td>
 		<td bgcolor="white" valign="top" class="ContentText">
-		<h2><br /><?echo $_SESSION['CompanyName'];?></h2>
+		<h2><br /><?= $_SESSION['CompanyName'];?></h2>
 		<p><b>Quick Intro</b></p>
 		<p>Welcome to the administrative area, use the links of the links of the 
 		left side of the page to access the website&#39;s editing options.</p>
-		<p><?echo $Message;?></p>
+		<p><?= $Message;?></p>
 		<form action="dashboard.php" method=post>
 		<input type=hidden name="action" value="edit">
 		&nbsp;<table border="0" width="76%" class="ContentText" cellspacing="3" cellpadding="3">
@@ -114,11 +115,11 @@ $row = $stmt->fetch();
 			<tr>
 				<td width="65"><b>Title</b></td>
 				<td width="408">
-				<input type="text" name="txtTitle" size="30" value="<?echo $row['title'];?>"></td>
+				<input type="text" name="txtTitle" size="30" value="<?= $row['title'];?>"></td>
 			</tr>
 			<tr>
 				<td width="65" valign="top"><b>Content</b></td>
-				<td width="408"><textarea id="textarea1" rows="7" name="content1" cols="30"><?echo $row['content'];;?></textarea>
+				<td width="408"><textarea id="textarea1" rows="7" name="content1" cols="30"><?= $row['content'];;?></textarea>
 				<script language="javascript1.2">generate_wysiwyg('textarea1');	</script>
 				</td>
 			</tr>
