@@ -200,53 +200,7 @@
 
 <section class="section">
   <div class="container">
-    <div class="grid-3">
-      <div class="tile">
-        <h3>Our Mission</h3>
-        <p>Help patients feel better, move better, and live healthier—naturally.</p>
-      </div>
-      <div class="tile">
-        <h3>Our Goal</h3>
-        <p>Clear answers, a plan you understand, and steady progress toward long-term results.</p>
-      </div>
-      <div class="tile">
-        <h3>Patient Experience</h3>
-        <p>Thorough exams, modern imaging when appropriate, and compassionate, straightforward communication.</p>
-      </div>
-    </div>
 
-    <hr class="hr"/>
-
-    <div class="callout">
-      <h3>Gift Cards</h3>
-      <p>Interested in a gift card for chiropractic care? Ask our team—options will be available as the office finishes build-out.</p>
-      <div class="actions-row">
-        <a class="btn btn-primary" href="contact.html">Contact Us</a>
-        <a class="btn btn-secondary" href="new-patient-special.html">New Patient Special</a>
-      </div>
-    </div>
-
-    <hr class="hr"/>
-
-    <div class="callout">
-      <h3>Office Photos</h3>
-      <p>Office photos will be added once the space is complete (end of year). For now, this area is reserved for a simple gallery.</p>
-    </div>
-
-    <hr class="hr"/>
-
-    <div class="callout">
-      <h3>Quick Contact</h3>
-      <p><strong>Phone:</strong> (859) 254-0059 &nbsp; • &nbsp; <strong>Address:</strong> <em>1132 Winchester Rd, Suite #125, Lexington, KY 40505</em></p>
-      <div class="actions-row">
-        <a class="btn btn-primary" href="contact.html">Get Directions</a>
-        <a class="btn btn-secondary" href="patient-portal.html">New Patient Portal</a>
-      </div>
-    </div>
-
-    <hr class="hr"/>
-
-    <p class="lead"><strong>New Patients:</strong> Start here → <a href="new-patient-special.html" style="color:var(--primary); font-weight:800; text-decoration:none;">New Patient Special</a></p>
   </div>
 </section>
 
