@@ -5,7 +5,7 @@ $pdo = db();
 $Message = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'edit') {
-    $sql = "UPDATE tblWebsite SET title = :title, content = :content WHERE sPageName = 'index.php'";
+    $sql = "UPDATE pages SET title = :title, content = :content WHERE sPageName = 'index.php'";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
         ':title' => $_POST['txtTitle'] ?? '',
