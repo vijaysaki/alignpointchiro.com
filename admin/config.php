@@ -16,7 +16,7 @@ return [
   'admin' => [
     'username' => 'admin',
     // Generate with: php -r "echo password_hash('YOURPASS', PASSWORD_DEFAULT), PHP_EOL;"
-    'password_hash' => 'abcd@1234',
+    'password_hash' => '$2y$10$K8sKQkY8WzZqC6nV4R4nWepxk2...',
   ],
 
   'uploads' => [
