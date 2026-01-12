@@ -9,3 +9,4 @@ foreach (db()->query("SELECT id,title,slug,status,updated_at FROM pages ORDER BY
   print_r($r);
 }
 echo "</pre>";
+?>
