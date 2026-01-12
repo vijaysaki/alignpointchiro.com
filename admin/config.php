@@ -13,11 +13,10 @@ return [
   ],
 
   // Simple admin auth (replace with env var in production)
-  'admin' => [
-    'username' => 'admin',
-    // Generate with: php -r "echo password_hash('YOURPASS', PASSWORD_DEFAULT), PHP_EOL;"
-    'password_hash' => '$2y$10$K8sKQkY8WzZqC6nV4R4nWepxk2...',
-  ],
+'admin' => [
+  'username' => 'admin',
+  'password_hash' => password_hash('mypassword123', PASSWORD_DEFAULT),
+],
 
   'uploads' => [
     'dir' => __DIR__ . '/uploads',
