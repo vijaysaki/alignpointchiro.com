@@ -1,6 +1,6 @@
 <?
 	session_start();
-	$_SESSION['CompanyName']="TMI LOCK";
+	$_SESSION['CompanyName']="Align Point Chrio";
 	if($_POST['action']=="login")
 	{
 		if($_POST['txtUserName']=="admin" && $_POST['txtPassword']=="password")
