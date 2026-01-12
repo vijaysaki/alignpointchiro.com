@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $Message = "<b><i><font color='red'>Changes Saved!</font></i></b>";
 }
 
-$sql = "SELECT * FROM tblWebsite WHERE sPageName = 'index.php'";
+$sql = "SELECT * FROM pages WHERE slug = 'index'";
 $stmt = $pdo->query($sql);
 $row = $stmt->fetch();
 ?>
