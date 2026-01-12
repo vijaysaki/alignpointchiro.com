@@ -1,13 +1,25 @@
-<?include("db.php");?>
-<?
-	if($_POST['action']=="edit"){
-	$sql="update tblWebsite SET sTitle='".mysql_real_escape_string($_POST['txtTitle'])."',sContent='".mysql_real_escape_string($_POST['txtContent'])."' where sPageName='".$_GET['page']."'";
-	@mysql_query($sql,$link);
-	$Message="<b><i><font color='red'>Changes Saved!</font></i></b>";
-	}
-	$sql="select * from tblWebsite where sPageName='".$_GET['page']."'";
-	$result=@mysql_query($sql,$link);
-	$row=mysql_fetch_array($result);
+<?php
+require_once("db.php");
+
+$pdo = db();
+$Message = '';
+$page = $_GET['page'] ?? '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'edit' && $page) {
+    $sql = "UPDATE pages SET title = :title, content = :content WHERE slug = :page";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+        ':title' => $_POST['txtTitle'] ?? '',
+        ':content' => $_POST['txtContent'] ?? '',
+        ':page' => $page
+    ]);
+    $Message = "<b><i><font color='red'>Changes Saved!</font></i></b>";
+}
+
+$sql = "SELECT * FROM pages WHERE slug = :page";
+$stmt = $pdo->prepare($sql);
+$stmt->execute([':page' => $page]);
+$row = $stmt->fetch();
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
