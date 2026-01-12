@@ -1,11 +1,11 @@
 <?php
-require_once("db.php");
+require_once(__DIR__ . "/db.php");
 
 $pdo = db();
 $Message = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'edit') {
-    $sql = "UPDATE pages SET title = :title, content = :content WHERE sPageName = 'index.php'";
+    $sql = "UPDATE pages SET title = :title, content = :content WHERE sPageName = 'index'";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
         ':title' => $_POST['txtTitle'] ?? '',
