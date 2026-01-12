@@ -14,8 +14,8 @@ return [
 
   // Simple admin auth (replace with env var in production)
 'admin' => [
-  'username' => 'admin',
-  'password_hash' => password_hash('mypassword123', PASSWORD_DEFAULT),
+  'username' => 'vijaysaki',
+  'password_hash' => password_hash('abcd@1234', PASSWORD_DEFAULT),
 ],
 
   'uploads' => [
