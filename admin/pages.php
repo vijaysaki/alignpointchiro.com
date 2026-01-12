@@ -2,7 +2,7 @@
 require __DIR__ . '/db.php';
 require __DIR__ . '/header.php';
 
-$rows = db()->query("SELECT id, title, slug, status, updated_at FROM pages ORDER BY updated_at DESC")->fetchAll();
+$rows = db()->query("SELECT * FROM pages ORDER BY updated_at DESC")->fetchAll();
 ?>
 <h1>Pages</h1>
 <p><a href="page_edit.php">+ New Page</a></p>
