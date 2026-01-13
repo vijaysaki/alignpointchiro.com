@@ -58,7 +58,7 @@ $row = $stmt->fetch() ?: ['title' => '', 'content' => ''];
 		<table border="0" width="100%" cellspacing="4" cellpadding="4" class="AdminTitle">
 			<tr>
 				<td>
-				<p align="right">Manage <?= $_SESSION['CompanyName'];?></td>
+				<?php include('left_menu.php'); ?>
 			</tr>
 		</table>
 		</center>
@@ -84,7 +84,7 @@ $row = $stmt->fetch() ?: ['title' => '', 'content' => ''];
 		<a href="staff.php">
 		<img border="0" src="images/link-manage-staff.jpg" width="200" height="33" alt="Manage Staff"></a></p>
 		<p>
-		<a href="page.php?page=index.php">
+		<a href="page.php?page=index">
 		<img border="0" src="images/link-website-pages.jpg" width="200" height="33" alt="Website Pages"></a></p>
 		<p><a href="photo-gallery.php">
 		<img border="0" src="images/link-photo-gallery.jpg" width="200" height="33" alt="Photo Gallery"></a></p>
