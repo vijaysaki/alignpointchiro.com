@@ -58,7 +58,7 @@ $row = $stmt->fetch() ?: ['title' => '', 'content' => ''];
 		<table border="0" width="100%" cellspacing="4" cellpadding="4" class="AdminTitle">
 			<tr>
 				<td>
-				<?php include('left_menu.php'); ?>
+				<p align="right">Manage <?= $_SESSION['CompanyName'];?></td>
 			</tr>
 		</table>
 		</center>
