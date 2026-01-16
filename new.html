@@ -15,35 +15,58 @@
 <body>
   <header id="alignpoint-menu"></header>
   <main id="alignpoint-content"></main>
-<script>
-  const API_BASE = "https://api.adeptlogics.com/"; // use the API host the backend actually runs on
-  const TENANT_ID = "08707e6f-a7b9-456e-9d2d-2b93df2954"; // the UUID from tenant_module.tenants
-  const TOKEN = "..." // if the endpoint requires auth, you’ll need a JWT here
 
-  async function fetchJson(endpoint) {
-    const headers = {
-      "Content-Type": "application/json",
-      ...(TOKEN ? { Authorization: `Bearer ${TOKEN}` } : {}),
-    };
-    const response = await fetch(`${API_BASE}${endpoint}`, { headers });
-    if (!response.ok) throw new Error(`API error ${response.status}`);
-    return response.json();
-  }
+  <script>
+    const API_BASE = "https://api.adeptlogics.com";
+    const TENANT_ID = "08707e6f-a7b9-456e-9d2d-2b93df2954";
+    const TOKEN = ""; // add Bearer token if your pages endpoint requires auth
 
-  async function init() {
-    const [pages, menus] = await Promise.all([
-      fetchJson(`/v1/pages?tenantId=${TENANT_ID}`),
-      fetchJson(`/v1/pages/menus?tenantId=${TENANT_ID}`),
-    ]);
-    renderMenu(menus);
-    renderContent(pages);
-  }
+    async function fetchJson(endpoint) {
+      const headers = {
+        "Content-Type": "application/json",
+        ...(TOKEN ? { Authorization: `Bearer ${TOKEN}` } : {}),
+      };
+      const response = await fetch(`${API_BASE}${endpoint}`, { headers });
+      if (!response.ok) throw new Error(`API error ${response.status}`);
+      return response.json();
+    }
 
-  init().catch(err => {
-    console.error("Failed to load Alignpoint data", err);
-    document.getElementById("alignpoint-content").innerHTML =
-      "<p>Sorry, content failed to load.</p>";
-  });
-</script>
+    function renderMenu(menus = []) {
+      const menuEl = document.getElementById("alignpoint-menu");
+      menuEl.innerHTML = menus
+        .map(menu => {
+          const items = (menu.items || [])
+            .filter(item => item.visible)
+            .map(item => {
+              const href = item.external_url || `/pages/${item.page?.slug || ""}`;
+              return `<a href="${href}">${item.label}</a>`;
+            })
+            .join("");
+          return `<nav data-menu="${menu.slug}">${items}</nav>`;
+        })
+        .join("");
+    }
+
+    function renderContent(pages = []) {
+      const home = pages.find(p => p.slug === "home") || pages[0];
+      const contentEl = document.getElementById("alignpoint-content");
+      contentEl.innerHTML = home?.content ?? "<p>No content found</p>";
+    }
+
+    async function init() {
+      const [pages, menus] = await Promise.all([
+        fetchJson(`/pages?tenantId=${TENANT_ID}`),
+        fetchJson(`/pages/menus?tenantId=${TENANT_ID}`),
+      ]);
+      renderMenu(menus);
+      renderContent(pages);
+    }
+
+    init().catch(err => {
+      console.error("Failed to load Alignpoint data", err);
+      document.getElementById("alignpoint-content").innerHTML =
+        "<p>Sorry, content failed to load.</p>";
+    });
+  </script>
 </body>
 </html>
