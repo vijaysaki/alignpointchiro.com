@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Alignpoint Content</title>
+  <style>
+    #alignpoint-menu a {
+      display: inline-block;
+      margin-right: 12px;
+      text-decoration: none;
+      color: #0b5fff;
+    }
+  </style>
+</head>
+<body>
+  <header id="alignpoint-menu"></header>
+  <main id="alignpoint-content"></main>
+
+  <script>
+    const API_BASE = "https://api.yourdomain.com/api";
+    const tenantId = "alignpoint";
+    const token = "TOKEN_IF_REQUIRED";
+
+    async function fetchJson(endpoint) {
+      const headers = {
+        "Content-Type": "application/json",
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      };
+      const response = await fetch(`${API_BASE}${endpoint}`, { headers });
+      if (!response.ok) throw new Error(`API error ${response.status}`);
+      return response.json();
+    }
+
+    function renderMenu(menus = []) {
+      const menuEl = document.getElementById("alignpoint-menu");
+      menuEl.innerHTML = menus
+        .map(menu => {
+          const items = (menu.items || [])
+            .filter(item => item.visible)
+            .map(item => {
+              const href = item.external_url || `/pages/${item.page?.slug || ""}`;
+              return `<a href="${href}">${item.label}</a>`;
+            })
+            .join("");
+          return `<nav data-menu="${menu.slug}">${items}</nav>`;
+        })
+        .join("");
+    }
+
+    function renderContent(pages = []) {
+      const home = pages.find(p => p.slug === "home") || pages[0];
+      const contentEl = document.getElementById("alignpoint-content");
+      contentEl.innerHTML = home?.content ?? "<p>No content found</p>";
+    }
+
+    async function init() {
+      const [pages, menus] = await Promise.all([
+        fetchJson(`/v1/pages?tenantId=${tenantId}`),
+        fetchJson(`/v1/pages/menus?tenantId=${tenantId}`),
+      ]);
+      renderMenu(menus);
+      renderContent(pages);
+    }
+
+    init().catch(err => {
+      console.error("Failed to load Alignpoint data", err);
+      document.getElementById("alignpoint-content").innerHTML =
+        "<p>Sorry, content failed to load.</p>";
+    });
+  </script>
+</body>
+</html>
