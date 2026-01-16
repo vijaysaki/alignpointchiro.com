@@ -17,16 +17,13 @@
   <main id="alignpoint-content"></main>
 
   <script>
-    const API_BASE = "https://api.adeptlogics.com/pages";
-    const TENANT_ID = "08707e6f-a7b9-456e-9d2d-2b93df2954";
-    const TOKEN = ""; // add Bearer token if your pages endpoint requires auth
+    const API_BASE = "https://api.adeptlogics.com/public";
+    const tenantDomain = "alignpointchiro.com";
 
     async function fetchJson(endpoint) {
-      const headers = {
-        "Content-Type": "application/json",
-        ...(TOKEN ? { Authorization: `Bearer ${TOKEN}` } : {}),
-      };
-      const response = await fetch(`${API_BASE}${endpoint}`, { headers });
+      const response = await fetch(`${API_BASE}${endpoint}`, {
+        headers: { "Content-Type": "application/json" },
+      });
       if (!response.ok) throw new Error(`API error ${response.status}`);
       return response.json();
     }
@@ -55,8 +52,8 @@
 
     async function init() {
       const [pages, menus] = await Promise.all([
-        fetchJson(`/pages?tenantId=${TENANT_ID}`),
-        fetchJson(`/pages/menus?tenantId=${TENANT_ID}`),
+        fetchJson(`/pages?domain=${tenantDomain}`),
+        fetchJson(`/pages/menus?domain=${tenantDomain}`),
       ]);
       renderMenu(menus);
       renderContent(pages);
