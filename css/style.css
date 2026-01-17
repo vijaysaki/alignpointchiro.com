@@ -85,9 +85,9 @@ img{ max-width:100%; height:auto; display:block; }
 .topbar-inner{
   display:grid;
   grid-template-columns: 260px 1fr;
-  align-items:flex-start; /* allow taller logo + right stack */
+  align-items:center;
   padding:10px 0;
-  min-height:92px; /* keeps room for 80px logo */
+  min-height:92px; /* keeps room for logo */
 }
 
 .brand{
@@ -99,8 +99,10 @@ img{ max-width:100%; height:auto; display:block; }
   min-width:200px;
 }
 .brand-logo{
-  height:80px;
+  height:72px;
+  max-height:72px;
   width:auto;
+  display:block;
 }
 
 .topbar-right{
