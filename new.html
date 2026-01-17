@@ -5,11 +5,44 @@
   <meta charset="utf-8" />
   <title>Alignpoint Chiropractor</title>
   <style>
-    #alignpoint-menu a {
-      display: inline-block;
-      margin-right: 12px;
-      text-decoration: none;
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 16px;
+      background: #f5f7ff;
+      border-bottom: 1px solid #dfe4ff;
+    }
+
+    .menu-dropdown {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .menu-dropdown label {
+      font-weight: 600;
       color: #0b5fff;
+    }
+
+    .menu-dropdown select {
+      border: 1px solid #b0b7d6;
+      border-radius: 4px;
+      padding: 6px 12px;
+      min-width: 220px;
+      background: #fff;
+      font-size: 0.95rem;
+    }
+
+    main {
+      flex: 1;
+      padding: 24px;
     }
   </style>
 </head>
@@ -37,12 +70,29 @@
             .filter(item => item.visible)
             .map(item => {
               const href = item.external_url || `/pages/${item.page?.slug || ""}`;
-              return `<a href="${href}">${item.label}</a>`;
+              return `<option value="${href}">${item.label}</option>`;
             })
             .join("");
-          return `<nav data-menu="${menu.slug}">${items}</nav>`;
+          if (!items) {
+            return "";
+          }
+          return `
+            <div class="menu-dropdown">
+              <label for="menu-${menu.slug}">${menu.label || menu.slug}:</label>
+              <select id="menu-${menu.slug}" data-menu="${menu.slug}">
+                <option value="">Choose a page</option>
+                ${items}
+              </select>
+            </div>
+          `;
         })
         .join("");
+
+      menuEl.addEventListener("change", event => {
+        const select = event.target;
+        if (select.tagName !== "SELECT" || !select.value) return;
+        window.location.href = select.value;
+      });
     }
 
     function renderContent(pages = []) {
