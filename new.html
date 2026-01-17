@@ -66,4 +66,88 @@
     });
   </script>
 </body>
+<script>
+  (function () {
+    const API_BASE = "https://api.adeptlogics.com/public";
+    const tenantDomain = "alignpointchiro.com";
+    const navList = document.querySelector("#siteNav .nav-list");
+
+    function chunk(items, size) {
+      const groups = [];
+      for (let i = 0; i < items.length; i += size) {
+        groups.push(items.slice(i, i + size));
+      }
+      return groups;
+    }
+
+    async function fetchMenus() {
+      const res = await fetch(`${API_BASE}/pages/menus?domain=${tenantDomain}`, {
+        headers: { "Content-Type": "application/json" },
+      });
+      if (!res.ok) throw new Error("Failed to load menus");
+      return res.json();
+    }
+
+    function buildNav(menu) {
+      if (!menu || !navList) return;
+      const items = (menu.items || []).filter(item => item.visible);
+      const roots = items.filter(item => !item.parent_id).sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0));
+      const childrenByParent = new Map();
+      items
+        .filter(item => item.parent_id)
+        .forEach(item => {
+          const bucket = childrenByParent.get(item.parent_id) ?? [];
+          bucket.push(item);
+          childrenByParent.set(item.parent_id, bucket);
+        });
+
+      const renderedRoots = roots
+        .map(root => {
+          const href = root.external_url || `/pages/${root.page?.slug || ""}` || "#";
+          const children = (childrenByParent.get(root.id) || []).sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0));
+
+          if (!children.length) {
+            return `<li><a class="nav-link" href="${href}">${root.label}</a></li>`;
+          }
+
+          const columns = chunk(children, 3)
+            .map(col => {
+              const links = col
+                .map(child => {
+                  const childHref = child.external_url || `/pages/${child.page?.slug || ""}` || "#";
+                  return `<a href="${childHref}">${child.label}</a>`;
+                })
+                .join("");
+              return `<div class="dd-col">${links}</div>`;
+            })
+            .join("");
+
+          return `
+            <li class="has-dropdown">
+              <button class="nav-link nav-btn" type="button" aria-expanded="false">
+                ${root.label} <span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="dropdown" role="menu">
+                <div class="dd-cols">
+                  ${columns}
+                </div>
+              </div>
+            </li>`;
+        })
+        .join("");
+
+      const cta = `<li class="nav-cta">
+        <a class="btn btn-primary btn-cta" href="new-patient-special.html">New Patient Special</a>
+      </li>`;
+
+      navList.innerHTML = `${renderedRoots}${cta}`;
+    }
+
+    fetchMenus()
+      .then(menus => buildNav(menus.find(menu => menu.slug === "header") ?? menus[0]))
+      .catch(err => {
+        console.error("Menu load failed", err);
+      });
+  })();
+</script>
 </html>
