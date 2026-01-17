@@ -495,5 +495,54 @@
   </script>
 
   <script src="/js/script.js"></script>
+  <script>
+    (function () {
+      function findPanelRoot(el) {
+        return el.closest(".acc-panel");
+      }
+
+      function clearSelected(panel) {
+        panel
+          .querySelectorAll(".pill-item.is-selected")
+          .forEach(p => p.classList.remove("is-selected"));
+      }
+
+      function escapeAttr(value) {
+        if (window.CSS && typeof window.CSS.escape === "function") {
+          return window.CSS.escape(value);
+        }
+        return value.replace(/"/g, '\\"');
+      }
+
+      function onPillClick(pill) {
+        const panel = findPanelRoot(pill);
+        if (!panel) return;
+
+        const key = (pill.textContent || "").trim();
+        const detail = panel.querySelector("[data-pill-detail]");
+        const titleEl = panel.querySelector("[data-pill-title]");
+        const bodyEl = panel.querySelector("[data-pill-body]");
+        const descNode = panel.querySelector(
+          '.pill-desc-list [data-pill="' + escapeAttr(key) + '"]'
+        );
+
+        clearSelected(panel);
+        pill.classList.add("is-selected");
+
+        if (!detail || !titleEl || !bodyEl) return;
+
+        titleEl.textContent = key;
+        bodyEl.textContent = descNode ? descNode.textContent.trim() : "Description coming soon.";
+        detail.hidden = false;
+        detail.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+
+      document.addEventListener("click", (event) => {
+        const pill = event.target.closest(".pill-item");
+        if (!pill) return;
+        onPillClick(pill);
+      });
+    })();
+  </script>
 </body>
 </html>
