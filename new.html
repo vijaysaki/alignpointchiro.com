@@ -2,48 +2,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YS5RQ53S2J"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
-    gtag("config", "G-YS5RQ53S2J");
-  </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YS5RQ53S2J"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YS5RQ53S2J');
+</script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AlignPoint Chiropractic | Content</title>
-  <meta
-    name="description"
-    content="AlignPoint Chiropractic content powered by Alignpoint's API."
-  />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
+  <title>AlignPoint Chiropractic | Home</title>
+  <meta name="description" content="AlignPoint Chiropractic in Lexington, KY. Evidence-based chiropractic care. New patient special. Conditions treated and what to expect." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css" />
-  <style>
-    body {
-      font-family: "Montserrat", system-ui, sans-serif;
-    }
-    main#alignpoint-content {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 32px 16px;
-    }
-  </style>
+</head>
+
 </head>
 <body>
-  <header class="menubar" id="alignpoint-menu">
-    <div class="container menubar-inner">
-      <nav class="site-nav" id="siteNav" aria-label="Primary navigation">
-        <ul class="nav-list"></ul>
-      </nav>
-    </div>
-  </header>
+  <menu  id="alignpoint-menu"></menu>
   <main id="alignpoint-content"></main>
 
   <script>
@@ -58,62 +37,36 @@
       return response.json();
     }
 
-    function itemHref(item) {
-      if (item.external_url) return item.external_url;
-      if (item.page?.full_path) return item.page.full_path;
-      if (item.page?.slug) return `/pages/${item.page.slug}`;
-      return "#";
-    }
-
     function renderMenu(menus = []) {
-      const menu = menus.find(m => m.slug === "header") || menus[0];
-      if (!menu) return;
-
-      const listEl = document.querySelector("#alignpoint-menu .nav-list");
-      if (!listEl) return;
-
-      const items = (menu.items || [])
-        .filter(item => item.visible)
-        .sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0));
-
-      const childrenByParent = items.reduce((acc, item) => {
-        const key = item.parent_id || "root";
-        if (!acc[key]) acc[key] = [];
-        acc[key].push(item);
-        return acc;
-      }, {});
-
-      const rootItems = childrenByParent.root || [];
-
-      listEl.innerHTML = rootItems
-        .map(item => {
-          const children = childrenByParent[item.id] || [];
-          const href = itemHref(item);
-          if (!children.length) {
-            return `<li><a class="nav-link" href="${href}">${item.label}</a></li>`;
-          }
-          const dropdownItems = children
-            .map(child => `<a href="${itemHref(child)}">${child.label}</a>`)
+      const menuEl = document.getElementById("alignpoint-menu");
+      menuEl.innerHTML = menus
+        .map(menu => {
+          const items = (menu.items || [])
+            .filter(item => item.visible)
+            .map(item => {
+              const href = item.external_url || `/pages/${item.page?.slug || ""}`;
+              return `<option value="${href}">${item.label}</option>`;
+            })
             .join("");
+          if (!items) {
+            return "";
+          }
           return `
-            <li class="has-dropdown">
-              <button class="nav-link nav-btn" type="button" aria-expanded="false">
-                ${item.label} <span class="chev" aria-hidden="true"></span>
-              </button>
-              <div class="dropdown" role="menu">
-                ${dropdownItems}
-              </div>
-            </li>
+            <div class="menu-dropdown">
+              <label for="menu-${menu.slug}">${menu.label || menu.slug}:</label>
+              <select id="menu-${menu.slug}" data-menu="${menu.slug}">
+                <option value="">Choose a page</option>
+                ${items}
+              </select>
+            </div>
           `;
         })
         .join("");
 
-      listEl.querySelectorAll(".nav-btn").forEach(button => {
-        button.addEventListener("click", () => {
-          const expanded = button.getAttribute("aria-expanded") === "true";
-          button.setAttribute("aria-expanded", (!expanded).toString());
-          button.parentElement.classList.toggle("is-open", !expanded);
-        });
+      menuEl.addEventListener("change", event => {
+        const select = event.target;
+        if (select.tagName !== "SELECT" || !select.value) return;
+        window.location.href = select.value;
       });
     }
 
