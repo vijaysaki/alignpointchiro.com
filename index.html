@@ -29,6 +29,18 @@
     .has-dropdown.open > .dropdown { display:block; }
     .dropdown a { display:block; padding:8px 10px; border-radius:10px; text-decoration:none; }
     .dropdown a:hover { background:rgba(0,0,0,.06); }
+    .dropdown-simple {
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      max-width:220px;
+    }
+    .dropdown-simple a {
+      padding:8px 10px;
+      border-radius:8px;
+      color:#0b5fff;
+      font-weight:600;
+    }
     .dd-cols { display:grid; grid-template-columns: repeat(3, minmax(160px, 1fr)); gap:10px; }
     .dd-col { padding:6px; }
     .dd-title { font-weight:700; margin:6px 10px; opacity:.85; }
@@ -219,18 +231,45 @@
         dropdown.className = "dropdown";
         dropdown.setAttribute("role", "menu");
 
-        const cols = document.createElement("div");
-        cols.className = "dd-cols";
+        const hasNestedChildren = children.some(child => (child.children || []).filter(grand => grand.visible).length);
+        if (hasNestedChildren) {
+          const cols = document.createElement("div");
+          cols.className = "dd-cols";
 
-        children.forEach(child => {
-          const col = document.createElement("div");
-          col.className = "dd-col";
-          const link = createDropdownLink(child);
-          col.appendChild(link);
-          cols.appendChild(col);
-        });
+          children.forEach(child => {
+            const col = document.createElement("div");
+            col.className = "dd-col";
 
-        dropdown.appendChild(cols);
+            const title = document.createElement("div");
+            title.className = "dd-title";
+            title.textContent = child.label || "Section";
+            col.appendChild(title);
+
+            const grandchildren = (child.children || []).filter(grand => grand.visible);
+            if (grandchildren.length) {
+              grandchildren.forEach(grand => {
+                const a = document.createElement("a");
+                a.href = getHref(grand);
+                a.textContent = grand.label || "(no label)";
+                col.appendChild(a);
+              });
+            } else {
+              col.appendChild(createDropdownLink(child));
+            }
+
+            cols.appendChild(col);
+          });
+
+          dropdown.appendChild(cols);
+        } else {
+          const simple = document.createElement("div");
+          simple.className = "dropdown-simple";
+          children.forEach(child => {
+            simple.appendChild(createDropdownLink(child));
+          });
+          dropdown.appendChild(simple);
+        }
+
         li.appendChild(btn);
         li.appendChild(dropdown);
 
