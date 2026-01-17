@@ -58,33 +58,47 @@
       return response.json();
     }
 
+    function itemHref(item) {
+      if (item.external_url) return item.external_url;
+      if (item.page?.full_path) return item.page.full_path;
+      if (item.page?.slug) return `/pages/${item.page.slug}`;
+      return "#";
+    }
+
     function renderMenu(menus = []) {
-      const menuContainer = document.getElementById("alignpoint-menu");
-      const listEl = menuContainer?.querySelector(".nav-list");
+      const menu = menus.find(m => m.slug === "header") || menus[0];
+      if (!menu) return;
+
+      const listEl = document.querySelector("#alignpoint-menu .nav-list");
       if (!listEl) return;
-      listEl.innerHTML = menus
-        .map(menu => {
-          const label = menu.label || menu.name || menu.slug;
-          const visibleItems = (menu.items || []).filter(item => item.visible);
-          if (!visibleItems.length) {
-            const href = menu.external_url || `/pages/${menu.slug || ""}`;
-            return `<li><a class="nav-link" href="${href}">${label}</a></li>`;
+
+      const items = (menu.items || [])
+        .filter(item => item.visible)
+        .sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0));
+
+      const childrenByParent = items.reduce((acc, item) => {
+        const key = item.parent_id || "root";
+        if (!acc[key]) acc[key] = [];
+        acc[key].push(item);
+        return acc;
+      }, {});
+
+      const rootItems = childrenByParent.root || [];
+
+      listEl.innerHTML = rootItems
+        .map(item => {
+          const children = childrenByParent[item.id] || [];
+          const href = itemHref(item);
+          if (!children.length) {
+            return `<li><a class="nav-link" href="${href}">${item.label}</a></li>`;
           }
-          const dropdownItems = visibleItems
-            .map(item => {
-              const href =
-                item.external_url || `/pages/${item.page?.slug || ""}`;
-              return `<a href="${href}">${item.label}</a>`;
-            })
+          const dropdownItems = children
+            .map(child => `<a href="${itemHref(child)}">${child.label}</a>`)
             .join("");
           return `
             <li class="has-dropdown">
-              <button
-                class="nav-link nav-btn"
-                type="button"
-                aria-expanded="false"
-              >
-                ${label} <span class="chev" aria-hidden="true"></span>
+              <button class="nav-link nav-btn" type="button" aria-expanded="false">
+                ${item.label} <span class="chev" aria-hidden="true"></span>
               </button>
               <div class="dropdown" role="menu">
                 ${dropdownItems}
