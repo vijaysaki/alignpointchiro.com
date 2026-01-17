@@ -1,69 +1,157 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Alignpoint Chiropractor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AlignPoint - Plain Menu Test</title>
   <style>
-    #alignpoint-menu a {
-      display: inline-block;
-      margin-right: 12px;
-      text-decoration: none;
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+      color: #111;
+    }
+    header, footer {
+      padding: 16px;
+      background: #fff;
+      border-bottom: 1px solid #ccc;
+    }
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    li {
+      position: relative;
+    }
+    a {
       color: #0b5fff;
+      text-decoration: none;
+    }
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 8px;
+      min-width: 180px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      z-index: 10;
+    }
+    li.has-dropdown:hover .dropdown {
+      display: block;
+    }
+    .dropdown a {
+      display: block;
+      padding: 4px 0;
+    }
+    main {
+      padding: 24px;
     }
   </style>
 </head>
 <body>
-  <header id="alignpoint-menu"></header>
-  <main id="alignpoint-content"></main>
+  <header>
+    <h1>AlignPoint menu test</h1>
+    <nav aria-label="Primary">
+      <ul id="plain-nav">
+        <li>Loading menu…</li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="plain-content">
+    <p>Loading page content…</p>
+  </main>
+
+  <footer>
+    <p>© AlignPoint Chiropractic</p>
+  </footer>
 
   <script>
-    const API_BASE = "https://api.adeptlogics.com/public";
-    const tenantDomain = "alignpointchiro.com";
+    (function () {
+      const API_BASE = "https://api.adeptlogics.com/public";
+      const tenantDomain = "alignpointchiro.com";
+      const navElement = document.getElementById("plain-nav");
+      const contentElement = document.getElementById("plain-content");
 
-    async function fetchJson(endpoint) {
-      const response = await fetch(`${API_BASE}${endpoint}`, {
-        headers: { "Content-Type": "application/json" },
+      function buildMenu(menu) {
+        if (!menu || !navElement) return;
+        const items = (menu.items || []).filter(item => item.visible);
+        const roots = {};
+        items.forEach(item => {
+          if (!item.parent_id) {
+            roots[item.id] = { ...item, children: [] };
+          }
+        });
+        items.forEach(item => {
+          if (item.parent_id && roots[item.parent_id]) {
+            roots[item.parent_id].children.push(item);
+          }
+        });
+
+        navElement.innerHTML = Object.values(roots)
+          .sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0))
+          .map(root => {
+            const href = root.external_url || `/pages/${root.page?.slug || ""}`;
+            if (!root.children.length) {
+              return `<li><a href="${href}">${root.label}</a></li>`;
+            }
+            const children = root.children
+              .sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0))
+              .map(child => {
+                const childHref = child.external_url || `/pages/${child.page?.slug || ""}`;
+                return `<a href="${childHref}">${child.label}</a>`;
+              })
+              .join("");
+            return `
+              <li class="has-dropdown">
+                <a href="${href}">${root.label}</a>
+                <div class="dropdown">
+                  ${children}
+                </div>
+              </li>`;
+          })
+          .join("");
+      }
+
+      function renderPage(page) {
+        if (!page) {
+          contentElement.textContent = "Page not found.";
+          return;
+        }
+        contentElement.innerHTML = page.content || "<p>No content returned.</p>";
+        document.title = page.meta?.meta_title || `AlignPoint | ${page.slug}`;
+      }
+
+      async function init() {
+        const [menuRes, pageRes] = await Promise.all([
+          fetch(`${API_BASE}/pages/menus?domain=${tenantDomain}`),
+          fetch(`${API_BASE}/pages?domain=${tenantDomain}`),
+        ]);
+        if (!menuRes.ok || !pageRes.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        const menus = await menuRes.json();
+        const pages = await pageRes.json();
+        const header = menus.find(menu => menu.slug === "header") ?? menus[0];
+        buildMenu(header);
+        const about = pages.find(p => p.slug === "about") ?? pages[0];
+        renderPage(about);
+      }
+
+      init().catch(err => {
+        console.error(err);
+        navElement.innerHTML = "<li>Error loading menu</li>";
+        contentElement.innerHTML = "<p>Content failed to load.</p>";
       });
-      if (!response.ok) throw new Error(`API error ${response.status}`);
-      return response.json();
-    }
-
-    function renderMenu(menus = []) {
-      const menuEl = document.getElementById("alignpoint-menu");
-      menuEl.innerHTML = menus
-        .map(menu => {
-          const items = (menu.items || [])
-            .filter(item => item.visible)
-            .map(item => {
-              const href = item.external_url || `/pages/${item.page?.slug || ""}`;
-              return `<a href="${href}">${item.label}</a>`;
-            })
-            .join("");
-          return `<nav data-menu="${menu.slug}">${items}</nav>`;
-        })
-        .join("");
-    }
-
-    function renderContent(pages = []) {
-      const home = pages.find(p => p.slug === "home") || pages[0];
-      const contentEl = document.getElementById("alignpoint-content");
-      contentEl.innerHTML = home?.content ?? "<p>No content found</p>";
-    }
-
-    async function init() {
-      const [pages, menus] = await Promise.all([
-        fetchJson(`/pages?domain=${tenantDomain}`),
-        fetchJson(`/pages/menus?domain=${tenantDomain}`),
-      ]);
-      renderMenu(menus);
-      renderContent(pages);
-    }
-
-    init().catch(err => {
-      console.error("Failed to load Alignpoint data", err);
-      document.getElementById("alignpoint-content").innerHTML =
-        "<p>Sorry, content failed to load.</p>";
-    });
+    })();
   </script>
 </body>
 </html>
