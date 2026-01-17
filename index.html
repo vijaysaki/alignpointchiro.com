@@ -162,8 +162,14 @@
       return roots;
     }
 
+    function normalizeExternalUrl(url) {
+      if (!url) return url;
+      return url.replace(/\.html(?=#|$)/i, "");
+    }
+
     function getHref(item) {
-      if (item.external_url) return item.external_url;
+      const external = normalizeExternalUrl(item.external_url);
+      if (external) return external;
       if (item.page?.full_path) {
         if (item.page.slug === DEFAULT_SLUG) return "/";
         return item.page.full_path || `/${item.page.slug}`;
