@@ -1,95 +1,329 @@
-
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-YS5RQ53S2J"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YS5RQ53S2J"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YS5RQ53S2J');
+  </script>
 
-  gtag('config', 'G-YS5RQ53S2J');
-</script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AlignPoint Chiropractic | Home</title>
-  <meta name="description" content="AlignPoint Chiropractic in Lexington, KY. Evidence-based chiropractic care. New patient special. Conditions treated and what to expect." />
+  <title>AlignPoint Chiropractic</title>
+  <meta name="description" content="AlignPoint Chiropractic in Lexington, KY." />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    /* Small safety defaults if style.css is missing pieces */
+    .nav-list { list-style:none; margin:0; padding:0; display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
+    .nav-list > li { position:relative; }
+    .nav-link, .nav-btn { font: inherit; background:none; border:0; cursor:pointer; padding:10px 10px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; }
+    .has-dropdown .dropdown { display:none; position:absolute; left:0; top:100%; z-index:999; min-width:260px; background:#fff; border:1px solid rgba(0,0,0,.1); border-radius:12px; padding:12px; box-shadow:0 14px 40px rgba(0,0,0,.12); }
+    .has-dropdown.open > .dropdown { display:block; }
+    .dropdown a { display:block; padding:8px 10px; border-radius:10px; text-decoration:none; }
+    .dropdown a:hover { background:rgba(0,0,0,.06); }
+    .dd-cols { display:grid; grid-template-columns: repeat(3, minmax(160px, 1fr)); gap:10px; }
+    .dd-col { padding:6px; }
+    .dd-title { font-weight:700; margin:6px 10px; opacity:.85; }
+    .chev { width:8px; height:8px; border-right:2px solid currentColor; border-bottom:2px solid currentColor; transform: rotate(45deg); display:inline-block; margin-top:-2px; }
+    @media (max-width: 900px){
+      .dd-cols { grid-template-columns: 1fr; }
+      .has-dropdown .dropdown { position:static; box-shadow:none; border-radius:10px; margin-top:6px; }
+      .nav-list { flex-direction:column; align-items:stretch; }
+    }
+  </style>
 </head>
 
-</head>
-<body>
-  <menu  id="alignpoint-menu"></menu>
-  <main id="alignpoint-content"></main>
+<body class="theme">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="top">
+    <!-- TOP BAR -->
+    <div class="topbar">
+      <div class="container topbar-inner">
+        <a class="brand" href="index.html" aria-label="AlignPoint Chiropractic Home">
+          <img src="assets/alignpoint-logo-dark.png" class="brand-logo" alt="AlignPoint Chiropractic">
+        </a>
+
+        <button class="nav-toggle" aria-expanded="false" aria-controls="siteNav" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+
+        <div class="topbar-right">
+          <div class="header-contact">
+            <div class="header-address">
+              1132 Winchester Rd
+              Suite #125
+              Lexington, KY 40505 | <a href="tel:+18592540059">(859) 254-0059</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MENU BAR (DYNAMIC) -->
+    <div class="menubar">
+      <div class="container menubar-inner">
+        <nav class="site-nav" id="siteNav" aria-label="Primary navigation">
+          <!-- We will inject UL here -->
+          <ul class="nav-list" id="navList"></ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- IGNORE CONTENT (placeholder) -->
+    <section class="section">
+      <div class="container">
+        <h1 class="h2">Page</h1>
+        <p class="lead">Content is loaded elsewhere. This page focuses on building the menu bar + dropdowns from your JSON.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <span>© <span id="year"></span> AlignPoint Chiropractic</span>
+      <a class="footer-link" href="#top">Back to top</a>
+    </div>
+  </footer>
 
   <script>
+    // ====== CONFIG ======
     const API_BASE = "https://api.adeptlogics.com/public";
     const tenantDomain = "alignpointchiro.com";
 
+    // Choose which menu slug to render from the API response
+    // In your sample JSON, "header" is the one with parent_id dropdown structure.
+    const MENU_SLUG = "header";
+
     async function fetchJson(endpoint) {
-      const response = await fetch(`${API_BASE}${endpoint}`, {
-        headers: { "Content-Type": "application/json" },
-      });
-      if (!response.ok) throw new Error(`API error ${response.status}`);
-      return response.json();
+      const res = await fetch(`${API_BASE}${endpoint}`);
+      if (!res.ok) throw new Error(`API error ${res.status}`);
+      return res.json();
     }
 
-    function renderMenu(menus = []) {
-      const menuEl = document.getElementById("alignpoint-menu");
-      menuEl.innerHTML = menus
-        .map(menu => {
-          const items = (menu.items || [])
-            .filter(item => item.visible)
-            .map(item => {
-              const href = item.external_url || `/pages/${item.page?.slug || ""}`;
-              return `<option value="${href}">${item.label}</option>`;
-            })
-            .join("");
-          if (!items) {
-            return "";
+    // ====== MENU TREE ======
+    function buildTree(items = []) {
+      const byId = new Map();
+      const roots = [];
+
+      // Clone + init children
+      for (const it of items) {
+        byId.set(it.id, { ...it, children: [] });
+      }
+
+      for (const it of byId.values()) {
+        if (it.parent_id && byId.has(it.parent_id)) {
+          byId.get(it.parent_id).children.push(it);
+        } else {
+          roots.push(it);
+        }
+      }
+
+      const sortRec = (nodeList) => {
+        nodeList.sort((a,b) => (a.sort_order ?? 0) - (b.sort_order ?? 0));
+        nodeList.forEach(n => sortRec(n.children));
+      };
+
+      sortRec(roots);
+      return roots;
+    }
+
+    function getHref(item) {
+      // You asked to "print external_url + label". We will use external_url when present.
+      // If external_url is null, we will fall back to your CMS page full_path (or /pages/slug).
+      return item.external_url
+        || item.page?.full_path
+        || (item.page?.slug ? `/pages/${item.page.slug}` : "#");
+    }
+
+    function makeLink(label, href, extraClass = "nav-link") {
+      const a = document.createElement("a");
+      a.className = extraClass;
+      a.textContent = label || "(no label)";
+      a.href = href || "#";
+      return a;
+    }
+
+    function renderMenuFromItems(items = []) {
+      const navList = document.getElementById("navList");
+      navList.innerHTML = "";
+
+      const tree = buildTree(items.filter(i => i.visible));
+
+      for (const node of tree) {
+        navList.appendChild(renderTopItem(node));
+      }
+
+      // Optional CTA (if you want)
+      // const liCta = document.createElement("li");
+      // liCta.className = "nav-cta";
+      // const cta = document.createElement("a");
+      // cta.className = "btn btn-primary btn-cta";
+      // cta.href = "new-patient-special.html";
+      // cta.textContent = "New Patient Special";
+      // liCta.appendChild(cta);
+      // navList.appendChild(liCta);
+    }
+
+    function renderTopItem(node) {
+      const li = document.createElement("li");
+
+      const hasChildren = Array.isArray(node.children) && node.children.length > 0;
+
+      // If it has children: render dropdown button + panel
+      if (hasChildren) {
+        li.className = "has-dropdown";
+
+        const btn = document.createElement("button");
+        btn.className = "nav-link nav-btn";
+        btn.type = "button";
+        btn.setAttribute("aria-expanded", "false");
+        btn.innerHTML = `${escapeHtml(node.label || "Menu")} <span class="chev" aria-hidden="true"></span>`;
+
+        const dropdown = document.createElement("div");
+        dropdown.className = "dropdown";
+        dropdown.setAttribute("role", "menu");
+
+        // If you want multi-column mega menu style (like your Conditions example),
+        // we will render each child as a "column".
+        const cols = document.createElement("div");
+        cols.className = "dd-cols";
+
+        // Each child becomes a column with a title and links for its children
+        node.children.forEach(child => {
+          const col = document.createElement("div");
+          col.className = "dd-col";
+
+          const title = document.createElement("div");
+          title.className = "dd-title";
+          title.textContent = child.label || "Section";
+          col.appendChild(title);
+
+          // If the child itself has an href and ALSO has children, you can optionally add it as first link
+          // Uncomment if you want clickable parent in dropdown:
+          // if (getHref(child) && getHref(child) !== "#") {
+          //   col.appendChild(makeLink(child.label, getHref(child), ""));
+          // }
+
+          if (child.children?.length) {
+            child.children.forEach(grand => {
+              const a = document.createElement("a");
+              a.href = getHref(grand);
+              a.textContent = grand.label || "(no label)";
+              col.appendChild(a);
+            });
+          } else {
+            // If no grandchildren, just show the child itself as a link
+            const a = document.createElement("a");
+            a.href = getHref(child);
+            a.textContent = child.label || "(no label)";
+            col.appendChild(a);
           }
-          return `
-            <div class="menu-dropdown">
-              <label for="menu-${menu.slug}">${menu.label || menu.slug}:</label>
-              <select id="menu-${menu.slug}" data-menu="${menu.slug}">
-                <option value="">Choose a page</option>
-                ${items}
-              </select>
-            </div>
-          `;
-        })
-        .join("");
 
-      menuEl.addEventListener("change", event => {
-        const select = event.target;
-        if (select.tagName !== "SELECT" || !select.value) return;
-        window.location.href = select.value;
+          cols.appendChild(col);
+        });
+
+        dropdown.appendChild(cols);
+
+        li.appendChild(btn);
+        li.appendChild(dropdown);
+
+        // Toggle behavior
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const isOpen = li.classList.toggle("open");
+          btn.setAttribute("aria-expanded", String(isOpen));
+          closeOtherDropdowns(li);
+        });
+
+        // Close on Escape
+        li.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") {
+            li.classList.remove("open");
+            btn.setAttribute("aria-expanded", "false");
+            btn.focus();
+          }
+        });
+
+        return li;
+      }
+
+      // No children: render normal link
+      li.appendChild(makeLink(node.label, getHref(node), "nav-link"));
+      return li;
+    }
+
+    function closeOtherDropdowns(currentLi) {
+      document.querySelectorAll(".has-dropdown.open").forEach(li => {
+        if (li !== currentLi) {
+          li.classList.remove("open");
+          const btn = li.querySelector("button.nav-btn");
+          if (btn) btn.setAttribute("aria-expanded", "false");
+        }
       });
     }
 
-    function renderContent(pages = []) {
-      const home = pages.find(p => p.slug === "home") || pages[0];
-      const contentEl = document.getElementById("alignpoint-content");
-      contentEl.innerHTML = home?.content ?? "<p>No content found</p>";
+    // Close dropdowns when clicking outside
+    document.addEventListener("click", () => {
+      document.querySelectorAll(".has-dropdown.open").forEach(li => {
+        li.classList.remove("open");
+        const btn = li.querySelector("button.nav-btn");
+        if (btn) btn.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    // Basic mobile toggle (if your style.css expects .open on #siteNav or similar)
+    (function setupMobileToggle(){
+      const toggle = document.querySelector(".nav-toggle");
+      const nav = document.getElementById("siteNav");
+      if (!toggle || !nav) return;
+
+      toggle.addEventListener("click", () => {
+        const expanded = toggle.getAttribute("aria-expanded") === "true";
+        toggle.setAttribute("aria-expanded", String(!expanded));
+        nav.classList.toggle("open");
+      });
+    })();
+
+    function escapeHtml(str) {
+      return String(str)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
     }
 
-    async function init() {
-      const [pages, menus] = await Promise.all([
-        fetchJson(`/pages?domain=${tenantDomain}`),
-        fetchJson(`/pages/menus?domain=${tenantDomain}`),
-      ]);
-      renderMenu(menus);
-      renderContent(pages);
+    async function initNav() {
+      const domain = encodeURIComponent(tenantDomain);
+      const menus = await fetchJson(`/pages/menus?domain=${domain}`);
+      const menu = (menus || []).find(m => m.slug === MENU_SLUG) || (menus || [])[0];
+
+      if (!menu) return;
+
+      renderMenuFromItems(menu.items || []);
     }
 
-    init().catch(err => {
-      console.error("Failed to load Alignpoint data", err);
-      document.getElementById("alignpoint-content").innerHTML =
-        "<p>Sorry, content failed to load.</p>";
+    // Footer year
+    document.getElementById("year").textContent = String(new Date().getFullYear());
+
+    // Start
+    initNav().catch(err => {
+      console.error("Failed to load menu", err);
+      // Fail gracefully: empty nav
     });
   </script>
+
+  <script src="js/script.js"></script>
 </body>
 </html>
