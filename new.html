@@ -83,7 +83,7 @@
     <!-- IGNORE CONTENT (placeholder) -->
     <section class="section">
       <div class="container">
-        <main id="alignpoint-content"></main>
+        <div id="alignpoint-content"></div>
       </div>
     </section>
   </main>
@@ -100,9 +100,24 @@
     const API_BASE = "https://api.adeptlogics.com/public";
     const tenantDomain = "alignpointchiro.com";
 
-    // Choose which menu slug to render from the API response
-    // In your sample JSON, "header" is the one with parent_id dropdown structure.
+    // This API menu is the header menu with dropdown data
     const MENU_SLUG = "header";
+    const DEFAULT_SLUG = "home";
+
+    const pagesBySlug = new Map();
+    const slugTitleMap = new Map();
+    let currentSlug = slugFromPath();
+
+    function slugFromPath() {
+      const path = window.location.pathname || "/";
+      const segments = path.split("/").filter(Boolean);
+      let slug = segments.pop() || "";
+      slug = slug.replace(/\.html$/i, "");
+      if (!slug || slug === "index") {
+        return DEFAULT_SLUG;
+      }
+      return slug;
+    }
 
     async function fetchJson(endpoint) {
       const res = await fetch(`${API_BASE}${endpoint}`);
@@ -110,12 +125,10 @@
       return res.json();
     }
 
-    // ====== MENU TREE ======
     function buildTree(items = []) {
       const byId = new Map();
       const roots = [];
 
-      // Clone + init children
       for (const it of items) {
         byId.set(it.id, { ...it, children: [] });
       }
@@ -129,7 +142,7 @@
       }
 
       const sortRec = (nodeList) => {
-        nodeList.sort((a,b) => (a.sort_order ?? 0) - (b.sort_order ?? 0));
+        nodeList.sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0));
         nodeList.forEach(n => sortRec(n.children));
       };
 
@@ -138,161 +151,27 @@
     }
 
     function getHref(item) {
-      // You asked to "print external_url + label". We will use external_url when present.
-      // If external_url is null, we will fall back to your CMS page full_path (or /pages/slug).
-      return item.external_url
-        || item.page?.full_path
-        || (item.page?.slug ? `/pages/${item.page.slug}` : "#");
+      if (item.external_url) return item.external_url;
+      if (item.page?.full_path) {
+        if (item.page.slug === DEFAULT_SLUG) return "/";
+        return item.page.full_path || `/${item.page.slug}`;
+      }
+      if (item.page?.slug) {
+        return item.page.slug === DEFAULT_SLUG ? "/" : `/${item.page.slug}`;
+      }
+      return "#";
     }
 
-    function makeLink(label, href, extraClass = "nav-link") {
-      const a = document.createElement("a");
-      a.className = extraClass;
-      a.textContent = label || "(no label)";
-      a.href = href || "#";
-      return a;
-    }
-
-    function renderMenuFromItems(items = []) {
-      const navList = document.getElementById("navList");
-      navList.innerHTML = "";
-
-      const tree = buildTree(items.filter(i => i.visible));
-
-      for (const node of tree) {
-        navList.appendChild(renderTopItem(node));
+    function pathForSlug(slug) {
+      const page = pagesBySlug.get(slug);
+      if (page?.full_path) {
+        if (slug === DEFAULT_SLUG) return page.full_path === "/home" ? "/" : page.full_path;
+        return page.full_path;
       }
 
-      // Optional CTA (if you want)
-      // const liCta = document.createElement("li");
-      // liCta.className = "nav-cta";
-      // const cta = document.createElement("a");
-      // cta.className = "btn btn-primary btn-cta";
-      // cta.href = "new-patient-special.html";
-      // cta.textContent = "New Patient Special";
-      // liCta.appendChild(cta);
-      // navList.appendChild(liCta);
+      if (slug === DEFAULT_SLUG) return "/";
+      return `/${slug}`;
     }
-
-    function renderTopItem(node) {
-      const li = document.createElement("li");
-
-      const hasChildren = Array.isArray(node.children) && node.children.length > 0;
-
-      // If it has children: render dropdown button + panel
-      if (hasChildren) {
-        li.className = "has-dropdown";
-
-        const btn = document.createElement("button");
-        btn.className = "nav-link nav-btn";
-        btn.type = "button";
-        btn.setAttribute("aria-expanded", "false");
-        btn.innerHTML = `${escapeHtml(node.label || "Menu")} <span class="chev" aria-hidden="true"></span>`;
-
-        const dropdown = document.createElement("div");
-        dropdown.className = "dropdown";
-        dropdown.setAttribute("role", "menu");
-
-        // If you want multi-column mega menu style (like your Conditions example),
-        // we will render each child as a "column".
-        const cols = document.createElement("div");
-        cols.className = "dd-cols";
-
-        // Each child becomes a column with a title and links for its children
-        node.children.forEach(child => {
-          const col = document.createElement("div");
-          col.className = "dd-col";
-
-          const title = document.createElement("div");
-          title.className = "dd-title";
-          title.textContent = child.label || "Section";
-          col.appendChild(title);
-
-          // If the child itself has an href and ALSO has children, you can optionally add it as first link
-          // Uncomment if you want clickable parent in dropdown:
-          // if (getHref(child) && getHref(child) !== "#") {
-          //   col.appendChild(makeLink(child.label, getHref(child), ""));
-          // }
-
-          if (child.children?.length) {
-            child.children.forEach(grand => {
-              const a = document.createElement("a");
-              a.href = getHref(grand);
-              a.textContent = grand.label || "(no label)";
-              col.appendChild(a);
-            });
-          } else {
-            // If no grandchildren, just show the child itself as a link
-            const a = document.createElement("a");
-            a.href = getHref(child);
-            a.textContent = child.label || "(no label)";
-            col.appendChild(a);
-          }
-
-          cols.appendChild(col);
-        });
-
-        dropdown.appendChild(cols);
-
-        li.appendChild(btn);
-        li.appendChild(dropdown);
-
-        // Toggle behavior
-        btn.addEventListener("click", (e) => {
-          e.stopPropagation();
-          const isOpen = li.classList.toggle("open");
-          btn.setAttribute("aria-expanded", String(isOpen));
-          closeOtherDropdowns(li);
-        });
-
-        // Close on Escape
-        li.addEventListener("keydown", (e) => {
-          if (e.key === "Escape") {
-            li.classList.remove("open");
-            btn.setAttribute("aria-expanded", "false");
-            btn.focus();
-          }
-        });
-
-        return li;
-      }
-
-      // No children: render normal link
-      li.appendChild(makeLink(node.label, getHref(node), "nav-link"));
-      return li;
-    }
-
-    function closeOtherDropdowns(currentLi) {
-      document.querySelectorAll(".has-dropdown.open").forEach(li => {
-        if (li !== currentLi) {
-          li.classList.remove("open");
-          const btn = li.querySelector("button.nav-btn");
-          if (btn) btn.setAttribute("aria-expanded", "false");
-        }
-      });
-    }
-
-    // Close dropdowns when clicking outside
-    document.addEventListener("click", () => {
-      document.querySelectorAll(".has-dropdown.open").forEach(li => {
-        li.classList.remove("open");
-        const btn = li.querySelector("button.nav-btn");
-        if (btn) btn.setAttribute("aria-expanded", "false");
-      });
-    });
-
-    // Basic mobile toggle (if your style.css expects .open on #siteNav or similar)
-    (function setupMobileToggle(){
-      const toggle = document.querySelector(".nav-toggle");
-      const nav = document.getElementById("siteNav");
-      if (!toggle || !nav) return;
-
-      toggle.addEventListener("click", () => {
-        const expanded = toggle.getAttribute("aria-expanded") === "true";
-        toggle.setAttribute("aria-expanded", String(!expanded));
-        nav.classList.toggle("open");
-      });
-    })();
 
     function escapeHtml(str) {
       return String(str)
@@ -303,23 +182,214 @@
         .replaceAll("'", "&#039;");
     }
 
-    async function initNav() {
-      const domain = encodeURIComponent(tenantDomain);
-      const menus = await fetchJson(`/pages/menus?domain=${domain}`);
-      const menu = (menus || []).find(m => m.slug === MENU_SLUG) || (menus || [])[0];
-
-      if (!menu) return;
-
-      renderMenuFromItems(menu.items || []);
+    function makeLink(label, href, extraClass) {
+      const a = document.createElement("a");
+      if (extraClass) a.className = extraClass;
+      a.textContent = label || "(no label)";
+      a.href = href || "#";
+      return a;
     }
 
-    // Footer year
+    function registerSlug(slug, label) {
+      if (!slug) return;
+      slugTitleMap.set(slug, label || slug);
+    }
+
+    function renderMenuFromItems(items = []) {
+      const navList = document.getElementById("navList");
+      if (!navList) return;
+      navList.innerHTML = "";
+      const visible = (items || []).filter(item => item.visible);
+      const tree = buildTree(visible);
+      tree.forEach(node => navList.appendChild(renderNavItem(node)));
+    }
+
+    function renderNavItem(node) {
+      const li = document.createElement("li");
+      const children = (node.children || []).filter(child => child.visible);
+      if (children.length) {
+        li.className = "has-dropdown";
+        const btn = document.createElement("button");
+        btn.className = "nav-link nav-btn";
+        btn.type = "button";
+        btn.setAttribute("aria-expanded", "false");
+        btn.innerHTML = `${escapeHtml(node.label || "Menu")} <span class="chev" aria-hidden="true"></span>`;
+
+        const dropdown = document.createElement("div");
+        dropdown.className = "dropdown";
+        dropdown.setAttribute("role", "menu");
+
+        const cols = document.createElement("div");
+        cols.className = "dd-cols";
+
+        children.forEach(child => {
+          const col = document.createElement("div");
+          col.className = "dd-col";
+          const link = createDropdownLink(child);
+          col.appendChild(link);
+          cols.appendChild(col);
+        });
+
+        dropdown.appendChild(cols);
+        li.appendChild(btn);
+        li.appendChild(dropdown);
+
+        btn.addEventListener("click", (event) => {
+          event.stopPropagation();
+          const isOpen = li.classList.toggle("open");
+          btn.setAttribute("aria-expanded", String(isOpen));
+          if (isOpen) {
+            closeDropdowns(li);
+          }
+        });
+
+        li.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            li.classList.remove("open");
+            btn.setAttribute("aria-expanded", "false");
+            btn.focus();
+          }
+        });
+
+        return li;
+      }
+
+      registerSlug(node.page?.slug, node.label);
+      li.appendChild(createInteractiveLink(node.label, getHref(node), node.page?.slug));
+      return li;
+    }
+
+    function createInteractiveLink(label, href, slug) {
+      const link = makeLink(label, href, "nav-link");
+      if (slug) {
+        link.dataset.slug = slug;
+        link.addEventListener("click", onNavLinkClick);
+      }
+      return link;
+    }
+
+    function createDropdownLink(item) {
+      const href = getHref(item);
+      const link = makeLink(item.label, href);
+      registerSlug(item.page?.slug, item.label);
+      if (item.page?.slug) {
+        link.dataset.slug = item.page.slug;
+        link.addEventListener("click", onNavLinkClick);
+      }
+      return link;
+    }
+
+    function onNavLinkClick(event) {
+      if (
+        event.defaultPrevented ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.button !== 0
+      ) {
+        return;
+      }
+
+      const slug = event.currentTarget.dataset.slug;
+      if (!slug) return;
+      event.preventDefault();
+      navigateToSlug(slug);
+    }
+
+    function renderContent(page, slug) {
+      const contentEl = document.getElementById("alignpoint-content");
+      if (!contentEl) return;
+      if (!page) {
+        contentEl.innerHTML = "<p>Content not found.</p>";
+        document.title = "AlignPoint Chiropractic";
+        return;
+      }
+      contentEl.innerHTML = page.content || "<p>Content is empty.</p>";
+      const label = slugTitleMap.get(slug) || page.slug;
+      const title = label ? `AlignPoint Chiropractic | ${label}` : "AlignPoint Chiropractic";
+      document.title = title;
+    }
+
+    function updateActiveLinks(slug) {
+      document.querySelectorAll("#navList a[data-slug]").forEach(link => {
+        link.classList.toggle("is-active", link.dataset.slug === slug);
+      });
+    }
+
+    async function navigateToSlug(slug, { pushState = true } = {}) {
+      const targetSlug = slug || DEFAULT_SLUG;
+      const page = pagesBySlug.get(targetSlug);
+      if (!page) {
+        renderContent(null, targetSlug);
+        updateActiveLinks(targetSlug);
+        return;
+      }
+      renderContent(page, targetSlug);
+      updateActiveLinks(targetSlug);
+      if (pushState) {
+        const url = pathForSlug(targetSlug);
+        history.pushState({ slug: targetSlug }, "", url);
+      }
+      currentSlug = targetSlug;
+    }
+
+    function closeDropdowns(except) {
+      document.querySelectorAll(".has-dropdown.open").forEach(li => {
+        if (li === except) return;
+        li.classList.remove("open");
+        const btn = li.querySelector("button.nav-btn");
+        if (btn) btn.setAttribute("aria-expanded", "false");
+      });
+    }
+
+    document.addEventListener("click", () => {
+      closeDropdowns();
+    });
+
+    (function setupMobileToggle() {
+      const toggle = document.querySelector(".nav-toggle");
+      const nav = document.getElementById("siteNav");
+      if (!toggle || !nav) return;
+      toggle.addEventListener("click", () => {
+        const expanded = toggle.getAttribute("aria-expanded") === "true";
+        toggle.setAttribute("aria-expanded", String(!expanded));
+        nav.classList.toggle("open");
+      });
+    })();
+
+    async function initNav() {
+      const domain = encodeURIComponent(tenantDomain);
+      const [pages, menus] = await Promise.all([
+        fetchJson(`/pages?domain=${domain}`),
+        fetchJson(`/pages/menus?domain=${domain}`),
+      ]);
+
+      (pages || []).forEach(page => {
+        if (page.slug) {
+          pagesBySlug.set(page.slug, page);
+        }
+      });
+
+      const menu = (menus || []).find(m => m.slug === MENU_SLUG) || (menus || [])[0];
+      if (menu) {
+        renderMenuFromItems(menu.items || []);
+      }
+
+      await navigateToSlug(currentSlug, { pushState: false });
+      history.replaceState({ slug: currentSlug }, "", pathForSlug(currentSlug));
+
+      window.addEventListener("popstate", event => {
+        const slug = event.state?.slug || slugFromPath();
+        if (slug !== currentSlug) {
+          navigateToSlug(slug, { pushState: false });
+        }
+      });
+    }
+
     document.getElementById("year").textContent = String(new Date().getFullYear());
 
-    // Start
     initNav().catch(err => {
-      console.error("Failed to load menu", err);
-      // Fail gracefully: empty nav
+      console.error("Failed to load AlignPoint data", err);
     });
   </script>
 
