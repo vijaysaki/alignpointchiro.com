@@ -72,7 +72,7 @@ img{ max-width:100%; height:auto; display:block; }
   position:sticky;
   top:0;
   z-index:100;
-  background:rgba(11,15,18,.95);
+  background:var(--bg-dark);
   backdrop-filter: blur(12px);
   border-bottom:1px solid var(--border);
   padding:0; /* previously overridden later */
@@ -80,6 +80,7 @@ img{ max-width:100%; height:auto; display:block; }
 
 /* Top bar */
 .topbar{
+  background:var(--bg-dark);
   border-bottom: 1px solid rgba(255,255,255,.08);
 }
 .topbar-inner{
