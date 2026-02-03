@@ -442,6 +442,195 @@
       document.title = title;
     }
 
+    async function loadContactForm() {
+      if (PAGE_SLUG !== "contact") return;
+      const contentEl = document.getElementById("alignpoint-content");
+      if (!contentEl) return;
+
+      const domain = encodeURIComponent(tenantDomain);
+      const endpoints = [
+        `/contact-forms?domain=${domain}`,
+        `/contact-forms?tenantDomain=${domain}`,
+        `/contact-forms`,
+      ];
+
+      let forms = null;
+      for (const endpoint of endpoints) {
+        try {
+          forms = await fetchJson(endpoint);
+          if (forms) break;
+        } catch (err) {
+          forms = null;
+        }
+      }
+
+      if (!Array.isArray(forms) || forms.length === 0) return;
+      const form = forms.find(item => item.slug === "contact") || forms[0];
+      if (!form || !Array.isArray(form.fields)) return;
+
+      const formWrap = document.createElement("div");
+      formWrap.className = "contact-form-wrapper";
+      formWrap.innerHTML = `
+        <div class="callout contact-form">
+          <h3>${form.name || "Contact Form"}</h3>
+          ${form.description ? `<p class="lead">${form.description}</p>` : ""}
+          <form id="contactForm" novalidate></form>
+          <div class="form-status" role="status" aria-live="polite"></div>
+        </div>
+      `;
+
+      const formEl = formWrap.querySelector("#contactForm");
+      const statusEl = formWrap.querySelector(".form-status");
+      const fields = form.fields || [];
+
+      fields.forEach(field => {
+        const fieldName = field.name || field.key;
+        if (!fieldName) return;
+        const label = field.label || fieldName;
+        const type = (field.type || "text").toLowerCase();
+
+        const fieldRow = document.createElement("div");
+        fieldRow.className = "form-field";
+
+        const labelEl = document.createElement("label");
+        labelEl.textContent = label + (field.required ? " *" : "");
+        labelEl.setAttribute("for", `field-${fieldName}`);
+        fieldRow.appendChild(labelEl);
+
+        let inputEl = null;
+
+        if (type === "textarea") {
+          inputEl = document.createElement("textarea");
+          inputEl.rows = field.rows || 4;
+        } else if (type === "select") {
+          inputEl = document.createElement("select");
+          const options = field.options || field.choices || [];
+          options.forEach(option => {
+            const opt = document.createElement("option");
+            opt.value = option.value ?? option;
+            opt.textContent = option.label ?? option;
+            inputEl.appendChild(opt);
+          });
+        } else if (type === "radio" && Array.isArray(field.options)) {
+          const group = document.createElement("div");
+          group.className = "form-group";
+          field.options.forEach(option => {
+            const value = option.value ?? option;
+            const text = option.label ?? option;
+            const id = `field-${fieldName}-${value}`;
+            const wrapper = document.createElement("label");
+            wrapper.className = "form-option";
+            const input = document.createElement("input");
+            input.type = "radio";
+            input.name = fieldName;
+            input.value = value;
+            input.id = id;
+            wrapper.appendChild(input);
+            wrapper.appendChild(document.createTextNode(text));
+            group.appendChild(wrapper);
+          });
+          fieldRow.appendChild(group);
+          formEl.appendChild(fieldRow);
+          return;
+        } else if (type === "checkbox" && Array.isArray(field.options)) {
+          const group = document.createElement("div");
+          group.className = "form-group";
+          field.options.forEach(option => {
+            const value = option.value ?? option;
+            const text = option.label ?? option;
+            const id = `field-${fieldName}-${value}`;
+            const wrapper = document.createElement("label");
+            wrapper.className = "form-option";
+            const input = document.createElement("input");
+            input.type = "checkbox";
+            input.name = fieldName;
+            input.value = value;
+            input.id = id;
+            wrapper.appendChild(input);
+            wrapper.appendChild(document.createTextNode(text));
+            group.appendChild(wrapper);
+          });
+          fieldRow.appendChild(group);
+          formEl.appendChild(fieldRow);
+          return;
+        } else {
+          inputEl = document.createElement("input");
+          inputEl.type = type;
+        }
+
+        inputEl.id = `field-${fieldName}`;
+        inputEl.name = fieldName;
+        if (field.placeholder) inputEl.placeholder = field.placeholder;
+        if (field.required) inputEl.required = true;
+        fieldRow.appendChild(inputEl);
+        formEl.appendChild(fieldRow);
+      });
+
+      const submitRow = document.createElement("div");
+      submitRow.className = "form-actions";
+      const submitBtn = document.createElement("button");
+      submitBtn.type = "submit";
+      submitBtn.className = "btn btn-primary";
+      submitBtn.textContent = form.submit_label || "Send Message";
+      submitRow.appendChild(submitBtn);
+      formEl.appendChild(submitRow);
+
+      formEl.addEventListener("submit", async event => {
+        event.preventDefault();
+        statusEl.textContent = "";
+        submitBtn.disabled = true;
+
+        const data = {};
+        fields.forEach(field => {
+          const fieldName = field.name || field.key;
+          if (!fieldName) return;
+          const type = (field.type || "text").toLowerCase();
+
+          if (type === "checkbox" && Array.isArray(field.options)) {
+            const values = Array.from(formEl.querySelectorAll(`input[name="${fieldName}"]:checked`)).map(
+              input => input.value
+            );
+            data[fieldName] = values;
+            return;
+          }
+
+          if (type === "radio" && Array.isArray(field.options)) {
+            const selected = formEl.querySelector(`input[name="${fieldName}"]:checked`);
+            data[fieldName] = selected ? selected.value : "";
+            return;
+          }
+
+          const input = formEl.querySelector(`[name="${fieldName}"]`);
+          data[fieldName] = input ? input.value : "";
+        });
+
+        try {
+          const response = await fetch(`${API_BASE}/contact-forms/${form.id}/submissions`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              tenantId: form.tenant_id,
+              formId: form.id,
+              data,
+            }),
+          });
+
+          if (!response.ok) {
+            throw new Error(`Submission failed (${response.status})`);
+          }
+
+          formEl.reset();
+          statusEl.textContent = form.thank_you_message || "Thanks! Your message has been sent.";
+        } catch (err) {
+          statusEl.textContent = "Sorry, your message could not be sent. Please try again.";
+        } finally {
+          submitBtn.disabled = false;
+        }
+      });
+
+      contentEl.appendChild(formWrap);
+    }
+
     function closeDropdowns(except) {
       document.querySelectorAll(".has-dropdown.open").forEach(li => {
         if (li === except) return;
@@ -485,6 +674,7 @@
       }
 
       renderContent(pagesBySlug.get(PAGE_SLUG), PAGE_SLUG);
+      await loadContactForm();
     }
 
     document.getElementById("year").textContent = String(new Date().getFullYear());

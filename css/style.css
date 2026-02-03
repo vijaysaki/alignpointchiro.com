@@ -566,6 +566,69 @@ main{
 .footer-link{ color:var(--muted); text-decoration:none; }
 .footer-link:hover{ color:var(--primary); }
 
+.contact-form-wrapper{
+  margin-top:32px;
+}
+
+.contact-form{
+  background:var(--bg);
+  color:var(--text);
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:var(--radius-lg);
+  padding:24px;
+  box-shadow: var(--shadow-soft);
+}
+
+.contact-form form{
+  display:grid;
+  gap:16px;
+  margin-top:16px;
+}
+
+.contact-form label{
+  font-weight:600;
+  color:var(--dark);
+  display:block;
+  margin-bottom:6px;
+}
+
+.contact-form input,
+.contact-form textarea,
+.contact-form select{
+  width:100%;
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid rgba(0,0,0,.15);
+  font:inherit;
+}
+
+.contact-form textarea{
+  resize:vertical;
+  min-height:120px;
+}
+
+.contact-form .form-group{
+  display:grid;
+  gap:10px;
+}
+
+.contact-form .form-option{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:14px;
+}
+
+.contact-form .form-actions{
+  display:flex;
+  justify-content:flex-start;
+}
+
+.contact-form .form-status{
+  margin-top:12px;
+  font-weight:600;
+}
+
 .map-box{
   border-radius:18px;
   border:1px solid rgba(255,255,255,.10);
